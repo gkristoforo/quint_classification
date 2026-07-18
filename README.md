@@ -1,2 +1,5 @@
 # quint_classification
-This repository contains the code snippets, comments, questions and progress tracking documents regarding a research on 2-3-site quantum integrable model classification.
+This repo contains the following:
+- used articles
+- codes written
+- tex files and pdfs that contain the comments, questions, progress trackings
