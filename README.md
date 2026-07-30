@@ -6,7 +6,7 @@ Current state of progress:
 Skeleton of the algorithm:
 1. Using the gauge freedom, eliminate the $00, ++, --$ components (there will be two solution families, in the latter, only 10 free symbols will be available initially).
 2. Gaussian elimination via monomial linearization.
-3. If $\alpha m_i + \beta m_j=0$ obtained somewhere, perform the substitution $m_j=-\frac{\alpha}{\beta}m_i$ for all $m_j$ ($m_{i,j}$ are monomials, the rhs. is 0 as the system of equations is, by construction, homogeneous). We look only for these types of substitutions as this introduces no radicals, exponential blowups in term count, or the untracable branching of the equations.
+3. If $\alpha m_i + \beta m_j=0$ obtained somewhere, perform the substitution $m_j=-\frac{\alpha}{\beta}m_i$ for all $m_j$ ($m_{i,j}$ are monomials, the rhs. is 0 as the system of equations is, by construction, homogeneous). We look only for these types of substitutions as this introduces no radicals, exponential blowups in term count, or the untraceable branching of the equations.
 4. Look for factorizable equations, if one is found, branch the solution (this avoids any sort of solution pruning).
 5. Repeat steps 1-3. until no substitution, new branch, or linear dependence can be found.
 6. Compute grevlex Gröbner basis (fastest), if needed, assign this for a better optimized algebra system.
