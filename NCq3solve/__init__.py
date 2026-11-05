@@ -1,0 +1,1 @@
+"this is the package containing the NCq3 solver"
