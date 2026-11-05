@@ -1,0 +1,504 @@
+{
+ "S=[(0, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(1, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (1, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 1), (1, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 2), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (1, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 2), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (1, 1), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (1, 0), (1, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 2), (1, 1), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 2), (1, 1), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 2), (2, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (1, 1), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (0, 2), (1, 0), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (1, 0), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 1), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 2), (1, 1), (2, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 2), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (0, 2), (1, 0), (1, 1), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (1, 0), (1, 1), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (2, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 2), (1, 1), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (2, 0), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (1, 0), (1, 1), (1, 2), (2, 1), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 2
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1), (2, 2)] chart=0": {
+  "probe": {
+   "dims_modp": [
+    -1,
+    -1
+   ]
+  },
+  "status": "empty_modp",
+  "components": [],
+  "orbit_size": 1
+ },
+ "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=0": {
+  "status": "ok",
+  "wall": 0.11496496200561523,
+  "components": [
+   {
+    "index": 1,
+    "dim": 4,
+    "tests": {
+     "twolocal": false,
+     "vacuous": true,
+     "diag0": false,
+     "diag1": false,
+     "diag2": false,
+     "diag3": false,
+     "diag4": false
+    },
+    "generators": [
+     "-4*x12*x14+4*x14*x15+4*x12*x17-2*x14*x17-4*x15*x17+2*x17^2+x16-1",
+     "x14-x17",
+     "x13+1",
+     "x11-2*x14+x17",
+     "-1/2*x13^2+x10+1/4*x16-3/4",
+     "x9-2*x12+x15",
+     "x8-2*x14+x17",
+     "x7-2*x10+1/2*x16+1/2",
+     "x5-3*x14+2*x17",
+     "1/2*x13*x16+x4-3/2*x13",
+     "x3-x6-2*x9+3*x12-x15",
+     "x2-4*x14+3*x17",
+     "x1-1",
+     "x0-2*x6-4*x9+8*x12-3*x15"
+    ],
+    "class": "vacuous"
+   },
+   {
+    "index": 2,
+    "dim": 4,
+    "tests": {
+     "twolocal": true,
+     "vacuous": true,
+     "diag0": false,
+     "diag1": false,
+     "diag2": false,
+     "diag3": false,
+     "diag4": false
+    },
+    "generators": [
+     "-4*x12*x14+4*x14*x15+4*x12*x17-2*x14*x17-4*x15*x17+2*x17^2+x16-1",
+     "x14-x17",
+     "x13-1",
+     "x11-2*x14+x17",
+     "-1/2*x13^2+x10+1/4*x16-3/4",
+     "x9-2*x12+x15",
+     "x8-2*x14+x17",
+     "x7-2*x10+1/2*x16+1/2",
+     "x5-3*x14+2*x17",
+     "1/2*x13*x16+x4-3/2*x13",
+     "x3-x6-2*x9+3*x12-x15",
+     "x2-4*x14+3*x17",
+     "x1-1",
+     "x0-2*x6-4*x9+8*x12-3*x15"
+    ],
+    "class": "vacuous"
+   }
+  ],
+  "cpu_s_gb": 0,
+  "gb_size": 34,
+  "dim": 4,
+  "n_components_raw": 2,
+  "cpu_s_total": 0,
+  "label": "S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=0",
+  "gb_used": "modStd0",
+  "orbit_size": 1,
+  "probe": {
+   "dims_modp": [
+    4,
+    4
+   ],
+   "dims_modp_sat": [
+    4,
+    4
+   ]
+  }
+ }
+}

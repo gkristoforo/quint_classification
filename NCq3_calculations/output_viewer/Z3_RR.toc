@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {1}Z3_RR}{3}{section.1}%
+\contentsline {section}{\numberline {2}Z3_RR diagonális mértékkel}{18}{section.2}%

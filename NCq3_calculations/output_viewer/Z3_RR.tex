@@ -1,0 +1,586 @@
+\documentclass[a4paper, 11pt, twoside, onecolumn]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{zref-totpages}
+\usepackage{cleveref}
+\usepackage[]{caption}
+\usepackage{enumitem}
+\usepackage{changepage}
+\usepackage{subcaption}
+\usepackage{diagbox}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{breqn}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+
+
+% page setting
+\geometry{hmargin = 2cm, top = 3cm, bottom = 2.5cm, headsep = 0.9cm}
+\setlength{\parindent}{0pt}
+
+
+% ábrák
+\crefname{figure}{}{}
+\newcommand{\figref}[1]{\hyperref[#1]{\ref{#1}. ábra}}
+
+% custom itemize symbol
+\renewcommand{\labelitemi}{$\blacktriangle$}
+
+% custom parancsok
+\newcommand{\qk}{\mathcal{Q}_k}
+\newcommand{\qot}{\mathcal{Q}_5}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\htil}{\tilde{h}}
+\newcommand{\nyil}{\rightarrow}
+\newcommand{\rmat}{$R$-matrix\xspace}
+% \begin{pmatrix}  &  \\  &  \end{pmatrix}
+
+
+% minimalist címoldal
+\title{\Large{Solutions of the Z3\_RR NCq3 chain}}
+\author{$\sim$ Kristóf}
+\date{\today}
+
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+\vspace{2cm}
+A következőképp kell olvasni az eredményeket:
+\begin{enumerate}
+	\item A Z3_RR elnevezés a ciklikus bázistranszformációra (Z3) és tükrözésre (R) véve szimmetrikus, valós (R) operátorokat jelenti.
+	\item h_tilde: Az első egy olyan klasszifikáció, ahol nem volt az extra $\htil$ tag a $\qot$ töltésben, míg a diag-gauge klasszifikációban egy 
+	\begin{equation}
+		\htil_j = \sum_{a,c=0}^2\gamma_{ac}P_j^aP_{j+1}^c
+	\end{equation}
+	diagonális tag adódik ehhez.
+	\item Megoldások felcímkézése: szerepel a megoldás száma (no. $n$), a család neve (ez esetben Z3_RR, valamint a $\htil$ fajtája), a minta, vagyis a nem diagonális $h^{ab}$ blokkok labeljei, a chart száma az adott mintában (ez a konstans szorzó, amit említettem múltkor), valamint az adott mintán belül a megtalált megoldás száma.
+\end{enumerate}
+Mind a 9 blokk listázva, címkézve van, megfelelnek az ansatz formájának. A diagonális gauge esetén a 9 $\gamma_{ac}$ paraméter van listázva, a hozzájuk tartozó operátorok csak projektorok, ugyebár.
+\begin{landscape}
+% \allowdisplaybreaks
+\section{Z3_RR}
+Genuine Solution no. 0 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 0: 
+\begin{gather*} 
+	 h_0^{00}=\begin{pmatrix}u^{22}_{22} & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\\left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{11}_{22} & 1\\- \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & 1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}\end{pmatrix}\\ 
+	 h_0^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 1\end{pmatrix}\\ 
+	 h_0^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_0^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 1\end{pmatrix}\\ 
+	 h_0^{11}=\begin{pmatrix}- \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & 1\\- \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{22}_{22} & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\1 & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{11}_{22}\end{pmatrix}\\ 
+	 h_0^{12}=\begin{pmatrix}u^{22}_{22} - 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_0^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_0^{21}=\begin{pmatrix}u^{22}_{22} - 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_0^{22}=\begin{pmatrix}u^{11}_{22} & 1 & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\\left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 1 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 1: 
+\begin{gather*} 
+	 h_1^{00}=\begin{pmatrix}u^{22}_{22} & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}}\\\sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & u^{11}_{22} & 1\\- \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & 1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}\end{pmatrix}\\ 
+	 h_1^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 1\end{pmatrix}\\ 
+	 h_1^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_1^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 1\end{pmatrix}\\ 
+	 h_1^{11}=\begin{pmatrix}- \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1} & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & 1\\- \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & u^{22}_{22} & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right)\\1 & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & u^{11}_{22}\end{pmatrix}\\ 
+	 h_1^{12}=\begin{pmatrix}u^{22}_{22} + 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_1^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_1^{21}=\begin{pmatrix}u^{22}_{22} + 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_1^{22}=\begin{pmatrix}u^{11}_{22} & 1 & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right)\\1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1} & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}}\\\sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 3 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 3: 
+\begin{gather*} 
+	 h_3^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 1\\1 & 2 u^{12}_{22} - u^{22}_{22} + 4 & 1\\1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_3^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_3^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & 1 & 1\\1 & u^{22}_{22} & 1\\1 & 1 & 2 u^{12}_{22} - u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_3^{12}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_3^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{21}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_3^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 4 & 1 & 1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & 1\\1 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 4 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 4: 
+\begin{gather*} 
+	 h_4^{00}=\begin{pmatrix}u^{22}_{22} & -1 & 1\\-1 & 2 u^{12}_{22} - u^{22}_{22} - 4 & 1\\1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_4^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_4^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & 1 & 1\\1 & u^{22}_{22} & -1\\1 & -1 & 2 u^{12}_{22} - u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_4^{12}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_4^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{21}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_4^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - 4 & 1 & -1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & 1\\-1 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 5 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 5: 
+\begin{gather*} 
+	 h_5^{00}=\begin{pmatrix}u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5} & 1\\- \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2}\end{pmatrix}\\ 
+	 h_5^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4}\end{pmatrix}\\ 
+	 h_5^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4}\end{pmatrix}\\ 
+	 h_5^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4}\end{pmatrix}\\ 
+	 h_5^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1\\- \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5}\end{pmatrix}\\ 
+	 h_5^{12}=\begin{pmatrix}u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_5^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4}\end{pmatrix}\\ 
+	 h_5^{21}=\begin{pmatrix}u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_5^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5} & 1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 6 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 6: 
+\begin{gather*} 
+	 h_6^{00}=\begin{pmatrix}u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2 & 1\\\sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2}\end{pmatrix}\\ 
+	 h_6^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1\\\sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2\end{pmatrix}\\ 
+	 h_6^{12}=\begin{pmatrix}u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_6^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{21}=\begin{pmatrix}u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_6^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2 & 1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 7 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 7: 
+\begin{gather*} 
+	 h_7^{00}=\begin{pmatrix}u^{22}_{22} & -1 & -1\\-1 & 2 u^{12}_{22} - u^{22}_{22} + 4 & 1\\-1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_7^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_7^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & -1 & 1\\-1 & u^{22}_{22} & -1\\1 & -1 & 2 u^{12}_{22} - u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_7^{12}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_7^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{21}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_7^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 4 & 1 & -1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & -1\\-1 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 8 for family Z3_RR_None with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 8: 
+\begin{gather*} 
+	 h_8^{00}=\begin{pmatrix}u^{22}_{22} & 1 & -1\\1 & 2 u^{12}_{22} - u^{22}_{22} - 4 & 1\\-1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_8^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_8^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & -1 & 1\\-1 & u^{22}_{22} & 1\\1 & 1 & 2 u^{12}_{22} - u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_8^{12}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_8^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{21}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_8^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - 4 & 1 & 1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & -1\\1 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 9 for family Z3_RR_None with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 0: 
+\begin{gather*} 
+	 h_9^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & u^{11}_{22} & 0\\0 & 0 & - u^{11}_{22} + 2 u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{01}=\begin{pmatrix}- u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{22}_{22} & 0\\1 & 0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{10}=\begin{pmatrix}- u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{11}=\begin{pmatrix}- u^{11}_{22} + 2 u^{22}_{22} & 0 & 0\\0 & u^{22}_{22} & 0\\0 & 0 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_9^{12}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_9^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{22}_{22} & 0\\1 & 0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{21}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_9^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 0\\0 & - u^{11}_{22} + 2 u^{22}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 10 for family Z3_RR_None with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 1: 
+\begin{gather*} 
+	 h_10^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & 2 u^{12}_{22} - u^{22}_{22} & 0\\0 & 0 & 2 u^{02}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{01}=\begin{pmatrix}u^{02}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0\\1 & 0 & u^{02}_{22}\end{pmatrix}\\ 
+	 h_10^{10}=\begin{pmatrix}u^{02}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{11}=\begin{pmatrix}2 u^{02}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{22}_{22} & 0\\0 & 0 & 2 u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{12}=\begin{pmatrix}u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{02}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_10^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0\\1 & 0 & u^{02}_{22}\end{pmatrix}\\ 
+	 h_10^{21}=\begin{pmatrix}u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{02}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_10^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & 2 u^{02}_{22} - u^{22}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 11 for family Z3_RR_None with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 0: 
+\begin{gather*} 
+	 h_11^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_11^{01}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & -1\\0 & u^{12}_{22} & 0\\-1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_11^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & -1\\0 & -1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_11^{10}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & -1\\0 & u^{12}_{22} & 0\\-1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_11^{11}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_11^{12}=\begin{pmatrix}u^{22}_{22} & -1 & 0\\-1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_11^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & -1\\0 & -1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_11^{21}=\begin{pmatrix}u^{22}_{22} & -1 & 0\\-1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_11^{22}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 12 for family Z3_RR_None with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 1: 
+\begin{gather*} 
+	 h_12^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_12^{01}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_12^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_12^{10}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_12^{11}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_12^{12}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_12^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4}\end{pmatrix}\\ 
+	 h_12^{21}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_12^{22}=\begin{pmatrix}- \frac{u^{12}_{22}}{4} + \frac{5 u^{22}_{22}}{4} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} - 8}}{4} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 13 for family Z3_RR_None with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 0: 
+\begin{gather*} 
+	 h_13^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_13^{01}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & -1\\0 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_13^{02}=\begin{pmatrix}u^{12}_{22} & -1 & 0\\-1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_13^{10}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & -1\\0 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_13^{11}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_13^{12}=\begin{pmatrix}u^{22}_{22} & 0 & -1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\-1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_13^{20}=\begin{pmatrix}u^{12}_{22} & -1 & 0\\-1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_13^{21}=\begin{pmatrix}u^{22}_{22} & 0 & -1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\-1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_13^{22}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+Genuine Solution no. 14 for family Z3_RR_None with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 1: 
+\begin{gather*} 
+	 h_14^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_14^{01}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_14^{02}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_14^{10}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_14^{11}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_14^{12}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_14^{20}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2}\end{pmatrix}\\ 
+	 h_14^{21}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & \frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_14^{22}=\begin{pmatrix}\frac{u^{12}_{22}}{2} + \frac{u^{22}_{22}}{2} - \frac{\sqrt{9 \left(u^{12}_{22}\right)^{2} - 18 u^{12}_{22} u^{22}_{22} + 9 \left(u^{22}_{22}\right)^{2} + 4}}{2} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+
+
+\section{Z3_RR diagonális mértékkel}
+Genuine Solution no. 0 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 0: 
+\begin{gather*} 
+	 h_0^{00}=\begin{pmatrix}u^{22}_{22} & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\\left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{11}_{22} & 1\\- \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & 1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}\end{pmatrix}\\ 
+	 h_0^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 1\end{pmatrix}\\ 
+	 h_0^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_0^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 1\end{pmatrix}\\ 
+	 h_0^{11}=\begin{pmatrix}- \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & 1\\- \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{22}_{22} & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\1 & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{11}_{22}\end{pmatrix}\\ 
+	 h_0^{12}=\begin{pmatrix}u^{22}_{22} - 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_0^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_0^{21}=\begin{pmatrix}u^{22}_{22} - 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_0^{22}=\begin{pmatrix}u^{11}_{22} & 1 & \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} + 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} - 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} + 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}}\\\left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} + 1\right) \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & - \sqrt{\frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 1}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 0 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 0: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_0=g_{22}\\ 
+	 \gamma^{(0, 1)}_0=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_0=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_0=g_{10}\\ 
+	 \gamma^{(1, 1)}_0=g_{22}\\ 
+	 \gamma^{(1, 2)}_0=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_0=g_{20}\\ 
+	 \gamma^{(2, 1)}_0=g_{21}\\ 
+	 \gamma^{(2, 2)}_0=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 1 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 1: 
+\begin{gather*} 
+	 h_1^{00}=\begin{pmatrix}u^{22}_{22} & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}}\\\sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & u^{11}_{22} & 1\\- \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & 1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}\end{pmatrix}\\ 
+	 h_1^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 1\end{pmatrix}\\ 
+	 h_1^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_1^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 2 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 1\end{pmatrix}\\ 
+	 h_1^{11}=\begin{pmatrix}- \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1} & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & 1\\- \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & u^{22}_{22} & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right)\\1 & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & u^{11}_{22}\end{pmatrix}\\ 
+	 h_1^{12}=\begin{pmatrix}u^{22}_{22} + 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_1^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 1 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_1^{21}=\begin{pmatrix}u^{22}_{22} + 1 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 2 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_1^{22}=\begin{pmatrix}u^{11}_{22} & 1 & \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right)\\1 & - \frac{2 u^{11}_{22} u^{12}_{22} - 3 u^{11}_{22} u^{22}_{22} - 3 u^{11}_{22} - 4 \left(u^{12}_{22}\right)^{2} + 8 u^{12}_{22} u^{22}_{22} + 8 u^{12}_{22} - 3 \left(u^{22}_{22}\right)^{2} - 6 u^{22}_{22} - 4}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1} & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}}\\\sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} \left(- u^{11}_{22} + 2 u^{12}_{22} - u^{22}_{22} - 1\right) & - \sqrt{- \frac{1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 1}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 1 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 1: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_1=g_{22}\\ 
+	 \gamma^{(0, 1)}_1=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_1=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_1=g_{10}\\ 
+	 \gamma^{(1, 1)}_1=g_{22}\\ 
+	 \gamma^{(1, 2)}_1=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_1=g_{20}\\ 
+	 \gamma^{(2, 1)}_1=g_{21}\\ 
+	 \gamma^{(2, 2)}_1=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 3 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 3: 
+\begin{gather*} 
+	 h_3^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 1\\1 & 2 u^{12}_{22} - u^{22}_{22} + 4 & 1\\1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_3^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_3^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & 1 & 1\\1 & u^{22}_{22} & 1\\1 & 1 & 2 u^{12}_{22} - u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_3^{12}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_3^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_3^{21}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_3^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 4 & 1 & 1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & 1\\1 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 3 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 3: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_3=g_{22}\\ 
+	 \gamma^{(0, 1)}_3=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_3=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_3=g_{10}\\ 
+	 \gamma^{(1, 1)}_3=g_{22}\\ 
+	 \gamma^{(1, 2)}_3=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_3=g_{20}\\ 
+	 \gamma^{(2, 1)}_3=g_{21}\\ 
+	 \gamma^{(2, 2)}_3=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 4 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 4: 
+\begin{gather*} 
+	 h_4^{00}=\begin{pmatrix}u^{22}_{22} & -1 & 1\\-1 & 2 u^{12}_{22} - u^{22}_{22} - 4 & 1\\1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_4^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_4^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & 1 & 1\\1 & u^{22}_{22} & -1\\1 & -1 & 2 u^{12}_{22} - u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_4^{12}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_4^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_4^{21}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_4^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - 4 & 1 & -1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & 1\\-1 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 4 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 4: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_4=g_{22}\\ 
+	 \gamma^{(0, 1)}_4=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_4=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_4=g_{10}\\ 
+	 \gamma^{(1, 1)}_4=g_{22}\\ 
+	 \gamma^{(1, 2)}_4=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_4=g_{20}\\ 
+	 \gamma^{(2, 1)}_4=g_{21}\\ 
+	 \gamma^{(2, 2)}_4=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 5 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 5: 
+\begin{gather*} 
+	 h_5^{00}=\begin{pmatrix}u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5} & 1\\- \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2}\end{pmatrix}\\ 
+	 h_5^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4}\end{pmatrix}\\ 
+	 h_5^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4}\end{pmatrix}\\ 
+	 h_5^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4}\end{pmatrix}\\ 
+	 h_5^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1\\- \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5}\end{pmatrix}\\ 
+	 h_5^{12}=\begin{pmatrix}u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_5^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4}\end{pmatrix}\\ 
+	 h_5^{21}=\begin{pmatrix}u^{22}_{22} - \frac{3 \sqrt{5}}{4} - \frac{3}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - \frac{5 \sqrt{5}}{4} - \frac{5}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_5^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 2 + \sqrt{5} & 1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - \frac{3 \sqrt{5}}{2} - \frac{1}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & - \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 5 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 5: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_5=g_{22}\\ 
+	 \gamma^{(0, 1)}_5=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_5=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_5=g_{10}\\ 
+	 \gamma^{(1, 1)}_5=g_{22}\\ 
+	 \gamma^{(1, 2)}_5=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_5=g_{20}\\ 
+	 \gamma^{(2, 1)}_5=g_{21}\\ 
+	 \gamma^{(2, 2)}_5=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 6 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 6: 
+\begin{gather*} 
+	 h_6^{00}=\begin{pmatrix}u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2 & 1\\\sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2}\end{pmatrix}\\ 
+	 h_6^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & 1\\\sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22} & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & 2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2\end{pmatrix}\\ 
+	 h_6^{12}=\begin{pmatrix}u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_6^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4}\end{pmatrix}\\ 
+	 h_6^{21}=\begin{pmatrix}u^{22}_{22} + \frac{3}{4} + \frac{3 \sqrt{5}}{4} & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + \frac{5}{4} + \frac{5 \sqrt{5}}{4} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_6^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - \sqrt{5} - 2 & 1 & - \frac{\sqrt{2 + 2 \sqrt{5}}}{2}\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + \frac{1}{2} + \frac{3 \sqrt{5}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}}\\- \frac{\sqrt{2 + 2 \sqrt{5}}}{2} & \sqrt{\frac{1}{2} + \frac{\sqrt{5}}{2}} & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 6 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 6: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_6=g_{22}\\ 
+	 \gamma^{(0, 1)}_6=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_6=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_6=g_{10}\\ 
+	 \gamma^{(1, 1)}_6=g_{22}\\ 
+	 \gamma^{(1, 2)}_6=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_6=g_{20}\\ 
+	 \gamma^{(2, 1)}_6=g_{21}\\ 
+	 \gamma^{(2, 2)}_6=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 7 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 7: 
+\begin{gather*} 
+	 h_7^{00}=\begin{pmatrix}u^{22}_{22} & -1 & -1\\-1 & 2 u^{12}_{22} - u^{22}_{22} + 4 & 1\\-1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_7^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} - 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} - 2\end{pmatrix}\\ 
+	 h_7^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & -1 & 1\\-1 & u^{22}_{22} & -1\\1 & -1 & 2 u^{12}_{22} - u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_7^{12}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_7^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} - 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_7^{21}=\begin{pmatrix}u^{22}_{22} - 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} - 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_7^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} + 4 & 1 & -1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} - 4 & -1\\-1 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 7 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 7: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_7=g_{22}\\ 
+	 \gamma^{(0, 1)}_7=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_7=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_7=g_{10}\\ 
+	 \gamma^{(1, 1)}_7=g_{22}\\ 
+	 \gamma^{(1, 2)}_7=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_7=g_{20}\\ 
+	 \gamma^{(2, 1)}_7=g_{21}\\ 
+	 \gamma^{(2, 2)}_7=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 8 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 8: 
+\begin{gather*} 
+	 h_8^{00}=\begin{pmatrix}u^{22}_{22} & 1 & -1\\1 & 2 u^{12}_{22} - u^{22}_{22} - 4 & 1\\-1 & 1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{01}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_8^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{10}=\begin{pmatrix}- u^{12}_{22} + 2 u^{22}_{22} + 4 & 0 & 0\\0 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22} + 2\end{pmatrix}\\ 
+	 h_8^{11}=\begin{pmatrix}- 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & -1 & 1\\-1 & u^{22}_{22} & 1\\1 & 1 & 2 u^{12}_{22} - u^{22}_{22} - 4\end{pmatrix}\\ 
+	 h_8^{12}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_8^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} + 2 & 0\\0 & 0 & - u^{12}_{22} + 2 u^{22}_{22} + 4\end{pmatrix}\\ 
+	 h_8^{21}=\begin{pmatrix}u^{22}_{22} + 2 & 0 & 0\\0 & - u^{12}_{22} + 2 u^{22}_{22} + 4 & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_8^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} - 4 & 1 & 1\\1 & - 2 u^{12}_{22} + 3 u^{22}_{22} + 4 & -1\\1 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 8 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (1, 1), (2, 2)] chart=0, comp 8: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_8=g_{22}\\ 
+	 \gamma^{(0, 1)}_8=- g_{10} + 2 g_{22}\\ 
+	 \gamma^{(0, 2)}_8=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_8=g_{10}\\ 
+	 \gamma^{(1, 1)}_8=g_{22}\\ 
+	 \gamma^{(1, 2)}_8=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_8=g_{20}\\ 
+	 \gamma^{(2, 1)}_8=g_{21}\\ 
+	 \gamma^{(2, 2)}_8=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 9 for family Z3_RR_diag-gauge with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 0: 
+\begin{gather*} 
+	 h_9^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & u^{11}_{22} & 0\\0 & 0 & - u^{11}_{22} + 2 u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{01}=\begin{pmatrix}- u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{22}_{22} & 0\\1 & 0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{10}=\begin{pmatrix}- u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{11}=\begin{pmatrix}- u^{11}_{22} + 2 u^{22}_{22} & 0 & 0\\0 & u^{22}_{22} & 0\\0 & 0 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_9^{12}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_9^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{22}_{22} & 0\\1 & 0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22}\end{pmatrix}\\ 
+	 h_9^{21}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & - u^{11}_{22} + u^{12}_{22} + u^{22}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_9^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 0\\0 & - u^{11}_{22} + 2 u^{22}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 9 in family Z3_RR_diag-gauge with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 0: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_9=g_{22}\\ 
+	 \gamma^{(0, 1)}_9=g_{01}\\ 
+	 \gamma^{(0, 2)}_9=g_{02}\\ 
+	 \gamma^{(1, 0)}_9=g_{10}\\ 
+	 \gamma^{(1, 1)}_9=g_{22}\\ 
+	 \gamma^{(1, 2)}_9=g_{12}\\ 
+	 \gamma^{(2, 0)}_9=g_{20}\\ 
+	 \gamma^{(2, 1)}_9=g_{21}\\ 
+	 \gamma^{(2, 2)}_9=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 10 for family Z3_RR_diag-gauge with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 1: 
+\begin{gather*} 
+	 h_10^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 0\\0 & 2 u^{12}_{22} - u^{22}_{22} & 0\\0 & 0 & 2 u^{02}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{01}=\begin{pmatrix}u^{02}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0\\1 & 0 & u^{02}_{22}\end{pmatrix}\\ 
+	 h_10^{10}=\begin{pmatrix}u^{02}_{22} & 1 & 0\\1 & u^{12}_{22} & 0\\0 & 0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{11}=\begin{pmatrix}2 u^{02}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{22}_{22} & 0\\0 & 0 & 2 u^{12}_{22} - u^{22}_{22}\end{pmatrix}\\ 
+	 h_10^{12}=\begin{pmatrix}u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{02}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_10^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 1\\0 & u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0\\1 & 0 & u^{02}_{22}\end{pmatrix}\\ 
+	 h_10^{21}=\begin{pmatrix}u^{02}_{22} + u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & u^{02}_{22} & 1\\0 & 1 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_10^{22}=\begin{pmatrix}2 u^{12}_{22} - u^{22}_{22} & 0 & 0\\0 & 2 u^{02}_{22} - u^{22}_{22} & 0\\0 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 10 in family Z3_RR_diag-gauge with pattern S=[(0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1)] chart=2, comp 1: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_10=g_{22}\\ 
+	 \gamma^{(0, 1)}_10=g_{01}\\ 
+	 \gamma^{(0, 2)}_10=g_{02}\\ 
+	 \gamma^{(1, 0)}_10=g_{10}\\ 
+	 \gamma^{(1, 1)}_10=g_{22}\\ 
+	 \gamma^{(1, 2)}_10=g_{12}\\ 
+	 \gamma^{(2, 0)}_10=g_{20}\\ 
+	 \gamma^{(2, 1)}_10=g_{21}\\ 
+	 \gamma^{(2, 2)}_10=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 11 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 0: 
+\begin{gather*} 
+	 h_11^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & u^{11}_{22} & 0\\0 & 0 & - \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\end{pmatrix}\\ 
+	 h_11^{01}=\begin{pmatrix}- \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0 & -1\\0 & u^{12}_{22} & 0\\-1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_11^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & -1\\0 & -1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2}\end{pmatrix}\\ 
+	 h_11^{10}=\begin{pmatrix}- \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0 & -1\\0 & u^{12}_{22} & 0\\-1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_11^{11}=\begin{pmatrix}- \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_11^{12}=\begin{pmatrix}u^{22}_{22} & -1 & 0\\-1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_11^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & -1\\0 & -1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2}\end{pmatrix}\\ 
+	 h_11^{21}=\begin{pmatrix}u^{22}_{22} & -1 & 0\\-1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_11^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 1\\0 & - \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 11 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 0: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_11=g_{22}\\ 
+	 \gamma^{(0, 1)}_11=- g_{20} + g_{21} + g_{22} - \frac{3 u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\\ 
+	 \gamma^{(0, 2)}_11=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_11=g_{20} - g_{21} + g_{22} + \frac{3 u^{11}_{22}}{2} - \frac{3 u^{22}_{22}}{2} + \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\\ 
+	 \gamma^{(1, 1)}_11=g_{22}\\ 
+	 \gamma^{(1, 2)}_11=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_11=g_{20}\\ 
+	 \gamma^{(2, 1)}_11=g_{21}\\ 
+	 \gamma^{(2, 2)}_11=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 12 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 1: 
+\begin{gather*} 
+	 h_12^{00}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & u^{11}_{22} & 0\\0 & 0 & - \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\end{pmatrix}\\ 
+	 h_12^{01}=\begin{pmatrix}- \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_12^{02}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2}\end{pmatrix}\\ 
+	 h_12^{10}=\begin{pmatrix}- \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0 & 1\\0 & u^{12}_{22} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_12^{11}=\begin{pmatrix}- \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_12^{12}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_12^{20}=\begin{pmatrix}u^{12}_{22} & 0 & 0\\0 & u^{22}_{22} & 1\\0 & 1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2}\end{pmatrix}\\ 
+	 h_12^{21}=\begin{pmatrix}u^{22}_{22} & 1 & 0\\1 & - \frac{u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} - 2\right) \left(u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22} + 2\right)}}{2} & 0\\0 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_12^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 1\\0 & - \frac{3 u^{11}_{22}}{2} + u^{12}_{22} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2} & 0\\1 & 0 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 12 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=1, comp 1: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_12=g_{22}\\ 
+	 \gamma^{(0, 1)}_12=- g_{20} + g_{21} + g_{22} - \frac{3 u^{11}_{22}}{2} + \frac{3 u^{22}_{22}}{2} - \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\\ 
+	 \gamma^{(0, 2)}_12=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_12=g_{20} - g_{21} + g_{22} + \frac{3 u^{11}_{22}}{2} - \frac{3 u^{22}_{22}}{2} + \frac{\sqrt{\left(u^{11}_{22}\right)^{2} - 4 u^{11}_{22} u^{12}_{22} + 2 u^{11}_{22} u^{22}_{22} + 4 \left(u^{12}_{22}\right)^{2} - 4 u^{12}_{22} u^{22}_{22} + \left(u^{22}_{22}\right)^{2} - 4}}{2}\\ 
+	 \gamma^{(1, 1)}_12=g_{22}\\ 
+	 \gamma^{(1, 2)}_12=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_12=g_{20}\\ 
+	 \gamma^{(2, 1)}_12=g_{21}\\ 
+	 \gamma^{(2, 2)}_12=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 13 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 0: 
+\begin{gather*} 
+	 h_13^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & u^{11}_{22} & 0\\1 & 0 & - \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_13^{01}=\begin{pmatrix}- \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0 & 0\\0 & u^{12}_{22} & -1\\0 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_13^{02}=\begin{pmatrix}u^{12}_{22} & -1 & 0\\-1 & u^{22}_{22} & 0\\0 & 0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_13^{10}=\begin{pmatrix}- \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0 & 0\\0 & u^{12}_{22} & -1\\0 & -1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_13^{11}=\begin{pmatrix}- \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_13^{12}=\begin{pmatrix}u^{22}_{22} & 0 & -1\\0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0\\-1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_13^{20}=\begin{pmatrix}u^{12}_{22} & -1 & 0\\-1 & u^{22}_{22} & 0\\0 & 0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_13^{21}=\begin{pmatrix}u^{22}_{22} & 0 & -1\\0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0\\-1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_13^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 0\\0 & - \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 13 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 0: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_13=g_{22}\\ 
+	 \gamma^{(0, 1)}_13=- \frac{g_{20} u^{11}_{22} - 2 g_{20} u^{12}_{22} + g_{20} u^{22}_{22} - g_{21} u^{11}_{22} + 2 g_{21} u^{12}_{22} - g_{21} u^{22}_{22} - g_{22} u^{11}_{22} + 2 g_{22} u^{12}_{22} - g_{22} u^{22}_{22} + \left(u^{11}_{22}\right)^{2} - u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\\ 
+	 \gamma^{(0, 2)}_13=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_13=\frac{g_{20} u^{11}_{22} - 2 g_{20} u^{12}_{22} + g_{20} u^{22}_{22} - g_{21} u^{11}_{22} + 2 g_{21} u^{12}_{22} - g_{21} u^{22}_{22} + g_{22} u^{11}_{22} - 2 g_{22} u^{12}_{22} + g_{22} u^{22}_{22} + \left(u^{11}_{22}\right)^{2} - u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\\ 
+	 \gamma^{(1, 1)}_13=g_{22}\\ 
+	 \gamma^{(1, 2)}_13=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_13=g_{20}\\ 
+	 \gamma^{(2, 1)}_13=g_{21}\\ 
+	 \gamma^{(2, 2)}_13=g_{22}\\ 
+\end{gather*} 
+Genuine Solution no. 14 for family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 1: 
+\begin{gather*} 
+	 h_14^{00}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & u^{11}_{22} & 0\\1 & 0 & - \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_14^{01}=\begin{pmatrix}- \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_14^{02}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_14^{10}=\begin{pmatrix}- \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0 & 0\\0 & u^{12}_{22} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+	 h_14^{11}=\begin{pmatrix}- \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & u^{11}_{22}\end{pmatrix}\\ 
+	 h_14^{12}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_14^{20}=\begin{pmatrix}u^{12}_{22} & 1 & 0\\1 & u^{22}_{22} & 0\\0 & 0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\end{pmatrix}\\ 
+	 h_14^{21}=\begin{pmatrix}u^{22}_{22} & 0 & 1\\0 & - \frac{u^{11}_{22} u^{12}_{22} - 2 u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 0\\1 & 0 & u^{12}_{22}\end{pmatrix}\\ 
+	 h_14^{22}=\begin{pmatrix}u^{11}_{22} & 0 & 0\\0 & - \frac{\left(u^{11}_{22}\right)^{2} - 2 u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} + 4 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}} & 1\\0 & 1 & u^{22}_{22}\end{pmatrix}\\ 
+\end{gather*} 
+htilde entries for Solution no. 14 in family Z3_RR_diag-gauge with pattern S=[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)] chart=2, comp 1: 
+\begin{gather*} 
+	 \gamma^{(0, 0)}_14=g_{22}\\ 
+	 \gamma^{(0, 1)}_14=- \frac{g_{20} u^{11}_{22} - 2 g_{20} u^{12}_{22} + g_{20} u^{22}_{22} - g_{21} u^{11}_{22} + 2 g_{21} u^{12}_{22} - g_{21} u^{22}_{22} - g_{22} u^{11}_{22} + 2 g_{22} u^{12}_{22} - g_{22} u^{22}_{22} + \left(u^{11}_{22}\right)^{2} - u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\\ 
+	 \gamma^{(0, 2)}_14=- g_{20} + 2 g_{22}\\ 
+	 \gamma^{(1, 0)}_14=\frac{g_{20} u^{11}_{22} - 2 g_{20} u^{12}_{22} + g_{20} u^{22}_{22} - g_{21} u^{11}_{22} + 2 g_{21} u^{12}_{22} - g_{21} u^{22}_{22} + g_{22} u^{11}_{22} - 2 g_{22} u^{12}_{22} + g_{22} u^{22}_{22} + \left(u^{11}_{22}\right)^{2} - u^{11}_{22} u^{12}_{22} - u^{11}_{22} u^{22}_{22} - 2 \left(u^{12}_{22}\right)^{2} + 5 u^{12}_{22} u^{22}_{22} - 2 \left(u^{22}_{22}\right)^{2} - 1}{u^{11}_{22} - 2 u^{12}_{22} + u^{22}_{22}}\\ 
+	 \gamma^{(1, 1)}_14=g_{22}\\ 
+	 \gamma^{(1, 2)}_14=- g_{21} + 2 g_{22}\\ 
+	 \gamma^{(2, 0)}_14=g_{20}\\ 
+	 \gamma^{(2, 1)}_14=g_{21}\\ 
+	 \gamma^{(2, 2)}_14=g_{22}\\ 
+\end{gather*} 
+
+\end{landscape}
+
+
+\end{document}

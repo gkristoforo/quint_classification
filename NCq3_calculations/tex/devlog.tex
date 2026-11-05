@@ -1,0 +1,196 @@
+\documentclass[a4paper, 11pt, twoside, onecolumn]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{zref-totpages}
+\usepackage{cleveref}
+\usepackage[]{caption}
+\usepackage{enumitem}
+\usepackage{changepage}
+\usepackage{subcaption}
+\usepackage{diagbox}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{breqn}
+\usepackage{graphicx}
+
+
+% page setting
+\geometry{hmargin = 2cm, top = 3cm, bottom = 2.5cm, headsep = 0.9cm}
+\setlength{\parindent}{0pt}
+
+
+% ábrák
+\crefname{figure}{}{}
+\newcommand{\figref}[1]{\hyperref[#1]{\ref{#1}. ábra}}
+
+% custom itemize symbol
+\renewcommand{\labelitemi}{$\blacktriangle$}
+
+% custom parancsok
+\newcommand{\qk}{\mathcal{Q}_k}
+\newcommand{\qot}{\mathcal{Q}_5}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\htil}{\tilde{h}}
+\newcommand{\nyil}{\rightarrow}
+\newcommand{\rmat}{$R$-matrix\xspace}
+% \begin{pmatrix}  &  \\  &  \end{pmatrix}
+
+
+% minimalist címoldal
+\title{\Large{\texttt{Devlog:} \textbf{a classification package for NCq3 type cellular automata}}}
+\author{$\sim$ Kristóf}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Goal of the project}
+This project is about classifying all local spin-1 integrable models that admit the Hamiltonian density
+\begin{equation}
+    h_{j,j+1,j+2}=\sum_{ab=0,1,2}(|{a}\rangle\langle{a}|)_j h_{j+1}^{f(a,b)}(|{b}\rangle\langle{b}|)_{j+2},
+\end{equation}
+where $h^{f(a,b)}_j$ denote some Hermitian matrices. The function $f(a,b)\in\{0,1,2\}$ is a model specific update rule, that determines whether $h_{j+1}$ is actually acting on the $j$th site, or not. \\
+
+The bird's-eye view workflow is the following:
+\begin{itemize}
+    \item A general ansatz is made for the Hamiltonian density. Hermiticity is enforced by construction, via employing specific generating operators that span the whole $\mathrm{Herm(3)}$ space. As coefficients, only real numbers are allowed.
+    \item We take it as established that the zero commutator of the first two dynamical charges of a system implies integrability (recent articles of Akihiro Hokkyo (2025), Mizuki Sanatani and Naoto Shiraishi (2026)). In the case of the particular ansatz:
+    \begin{equation}
+        [H, \Q_5] =0.
+    \end{equation}
+    \item Enforcing the above conditon on an infinite/periodic chain, a number of third order polynomials are obtained, which then form the system of equations that need to be solved.
+    \item After the system has been solved, we convert the solution strings back to Hamiltonian densities, then classify them based on a number of properties. 
+\end{itemize}
+
+\section{Rough structure of the package}
+The package should be divided to the following modules so that the components stay neatly ordered. Also, a certain hierarchy is imposed upon the modules: the \texttt{operators} module needs to be written early on, since equation generation, the ansatzes and a lot of other parts of the code depend on these basic building blocks.
+\begin{enumerate}
+    \item \textbf{Operators} \\
+    Contains every operator that will be used in the calculations, including: Pauli, spin-1 operators, projectors, etc. 
+    \item \textbf{Algebra} \\
+    Defines the exact operator algebra employing efficient sparse matrix computation techniques. Contains addition, multiplication, tensor products with identities, embedding an operator into a larger system, so on.
+    \item \textbf{Ansatz} \\
+    Converts the inputted density-as-dictionary into an actual ansatz for the Hamiltonian while verifying all the required properties so that the model stays physical. At this point, certain symmetries can be imposed upon the model, restricting the parameter and solution space.
+    \item \textbf{Symmetry families} \\
+    Contains the names and the restrictions for each symmetry family. The symmetries probably should not be implemented as adding more equations to an already large system.
+    \item \textbf{Equation generation} \\
+    Takes the Hamiltonian density and $\tilde{h}$ as inputs, imposes the Reshetikhin condition on $H,\Q_5$, and outputs the set of equations that are obtained by forcing every component to be zero. Real and imaginary parts are treated as separate, real-valued equations: this way, the solution procedure can be carried out on a more restricted polynomial ring (e.g over $\mathbb{Q}$).
+    \item \textbf{Solver pipeline} \\
+    A complex solving system that is built around providing the simplest, most physically restricted system of polynomials for a Gröbner basis solver. The algorithm runs on a CAS backend to optimize runtime.
+    \item \textbf{Back-conversion} \\
+    Takes the solutions from the previous modules and converts them back into the Hamiltonian densities for which the ansatz has been made in the first place. It also prunes duplicate solutions, subclasses and operators that could be obtained by some transformation on an other element of the solution set.
+\end{enumerate}
+\subsection{\textit{Nota bene}}
+\begin{itemize}
+    \item The actual residual has to be equated to 0, not the density. Canonical (translation invariant forms) need to be introduced.
+    \item At a chain length $L=8$, there are $3^{2L}=43046721$ matrix entries. It is not feasible, so reduction is needed. Using sparse matrices is a huge performance boost thanks to the nature of the projectors present in the core formula.
+    \item For the variety of the Gröbner basis generated ideal to be finite, one has to flatten the ideal that generates it before letting it solve the system.
+    \item $[H,\Q_5]$ is Hermitian, while $[H,\sum_j \htil]$ is anti-Hermitian. This needs to be accounted for by putting an $i$ before the $[H,\qot]$ in the sum of the two terms: [Re, Im] $\nyil$ [-Im, Re]. Take $\htil=A-A^\dagger$ so that $\htil^\dagger=-\htil$.
+    \item During the ansatz stage, the $f(a,b)$ is as general as it can be, that is, for each pair $a,b$, there is a unique $h_{j+1}$ allowed to be turned on. There is no binary-like behaviour.
+    \item Numerics are to be implemented, probably cheap.
+    \item It is still a mystery what the CAS's output will be - will be looked back upon after the specific framework will have been selected.
+    \item Via Gröbner bases, the inclusion of varieties of different ideals can be declared. The gauge symmetries are needed to be sorted out separately, as Gröbner bases are not equipped to handle them.
+    \item There are no interaction patterns considered yet.
+    \item Don't do 
+    \begin{equation}
+        h=\frac{1}{2}(m+m^\dagger)
+    \end{equation}
+    for hermitization, costs $\sim$two times as many parameters in the generation procedure.
+    \item Diagonal matrices need to be pruned as early as possible, since they are responsible for large ideal sizes.
+    \item 
+\end{itemize}
+
+\section{Ansatz module}
+This module works with an ansatz object so that consistency and restriction checks are run internally, in a self-contained ecosystem. The following functionalities are needed inside the \texttt{ansatz.py} module:
+\begin{itemize}
+    \item Inputs: hdict (the actual Hamiltonian density), dimension, and whether hermiticity needs to be checked.
+    \item If an $a,b$ combination is not specified, then the constructor adds a zero matrix manually.
+    \item Collecting the symbols then sorting them into a global order.
+    \item Ensuring linearity, then extracting the constant term and the coefficients of the symbols.
+    \item Rejecting non-real symbols.
+    \item Checking whether all the entries are rational.
+    \item Ensuring hermiticity of the ansatz.
+    \item Substituting numerical data in place of the symbols.
+    \item Creating the most general symbolic Hermitian/prespecified block for dimension $d$.
+    \item Building the actual density out of the ansatz dictionary. Accounts for the following: reflection symmetry of $h^{ab}$, offdiagonal activity based pattern
+    \item Restricting the ansatz via solving a set of equations as the restrictions. Returns an Ansatz object.
+\end{itemize}
+
+\section{Algebra module}
+Using sparse matrix algebra is mandatory for achieving sensible runtimes. This module is responsible for defining all sorts of operations in this framework. Mathematical transformations of expressions (eg. canonical forms) are also built into the module. The following functionalities are included:
+\begin{itemize}
+    \item Treating complex expressions as tuples of two, defining coefficient multiplication (\texttt{cmul}) via assigning a new tuple to two preexisting ones.
+    \item Adding real and imaginary parts to existing polynomials stored in dicts via their indices(/keys for sparse). 
+    \item Cleaning all zero polynomials from a dictionary.
+    \item Tensor products with the identity both from the left and the right sides $L$ and $R$ times, respectively (also called \textit{padding}).
+    \item Conversion of dict item with tuple-like column and row indicators to square matrices.
+    \item Matrix multiplication.
+    \item Commutator of two matrices.
+    \item Sum/difference of two matrices.
+    \item Commutator density of two translation invariant operators, with densities $A,B$, where $A$ is placed on $a$ sites and $B$ is placed on $b$ sites. The density is aligned to the left, and lives on $N$ overall sites (for the empty slots, it is padded with $n_{\mathrm{id}}=N-b-a+1$ identities).
+    \item Computing the canonical form of a translation invariant operator, that is, subtracting a telescopically disappearing $g\otimes\mathbf{1}-\mathbf{1}\otimes g$ from the density.
+\end{itemize}
+
+\section{Equations module}
+Having the ansatz module that creates a dictionary of the Hamiltonian density, the equations determining the integrability properties of the ansatz are obtainable after enforcing the Reshetikhin condition, utilizing the sparse algebraic functionalities of the algebra module. This module can achieve the following:
+\begin{itemize}
+    \item The initialization of a system internalizes the ansatz and the dimension (as given parameters), stores and converts the symbols pregiven by the ansatz to CAS-readable format, creates the supplementary $\htil$ operator's density (which can be one of \textit{diagonal} or \textit{anti-Hermitian}) and creates the polynomial context of the ring generated by the free symbols of both $h$ and $\htil$.
+    \item Functions that create an arbitrary constant polynomial and a first order polynomial in the $k$-th variable.
+    \item Construction of the FLINT polynomial entry of a given \texttt{const}-\texttt{lin} pair of the ansatz's precomputed linear array entries.
+    \item Conversion of the matrix elements of the ansatz to a FLINT compatible density with cleaning, via splitting $(a,b,i,j)$ to $[(a,i,b),(a,j,b)]$ (this is needed so that it matches the format used by the \texttt{algebra} module, which breaks indices down to row and column strings).
+    \item Creating the auxiliary density for $\htil$. Can add a diagonal or an IRF-type density. In the latter case, $\htil$ needs to be anti-Hermitian to have a consistent anti-Hermitian commutator $[H,\Q_5]$.
+    \item Generates the equations of the system. It can either use a form for $q_5$ that is 4-local (can be proven using the diagonal form of the projectors in the ansatz), or 5-local. Computes the auxiliary density's residual ($\mathcal{R}_{\tilde{h}}:=[H,[H,\tilde{H}]]$). Converts the density of the residual to a canonical form. Appends every entry's monic polynomial into a list, while checking for redundancies via string-converted keyfinding (this works because the polynomials have definite ordering with respect to the free parameters).
+    \item Performs linear reduction of the polynomial system via monomial linearization.
+\end{itemize}
+
+\section{Families module}
+The ansatz is going to be fed a system of third order polynomial equations, but in the most general case, the number of equations and free parameters is way larger than what can actually be solved. Hence, a systematic reduction in the degrees of freedom is needed - that is why different Hamiltonian families are introduced, each with a unique constraint on the polynomial system.
+The functionalities of the module:
+\begin{itemize}
+    \item \texttt{B_RZ2}: Dipolar, real, reflection-invariant Hamiltonian. The extra equations enforced are the ones for $S_{1,\mathrm{flip}}=S_1$, $S_{x,\mathrm{flip}}=S_x$, $S_{z,\mathrm{flip}}=-S_z$. The condition for checking a particular $a, b$ configuration is that the flipped, or the reflected operator's flipped version's canonical key has not yet been appended into the set containing unique keys.
+    \item \texttt{Z3}: Start off with a given pair $(a, b)$, then iteratively impose $h_{i+k,j+k}^{a+k, b+k}=h_{ij}^{ab}$. It is obvious that setting $a$ to something other than 0 never introduces new equations: at some $k$, it reaches $(a+k) \ \mathrm{mod} 3=0$, which then imposes the same restrictions. This is called a "clock symmetry".
+    \item \texttt{Z3}: The same family as above, the only difference being that realness and reflection invariance is imposed on the density.
+    \item \texttt{E}: Only letting terms have nonzero offdiagonal components that preserve the magnetization, ie. $m_a+m_b=0$. For this, each $a, b$ has an assigned magnetization number, therefore enforcing this condition is equivalent to a simple check regarding the indices. 
+\end{itemize}
+
+\section{Solver module}
+The 5 prior modules provide the full system of third order polynomial equations, with the full polynomial context, usable by CAS, rational coefficients, linear reduction in the monomials, and the complete symmetrization unique for that specific family. The solver module is essentially a Gröbner basis finder engine, but computing that from the equations, with brute force is unfeasible. Instead, a number of structural partitions (will be spelled out what it means in detail) are imposed upon the system, in the following order, plus the initialization:
+\begin{itemize}
+    \item The ansatz generated by the specific family (with the restrictions already encoded into the equations), $\htil$ and the symmetries regarding \textit{relabeling and reflection}, which are not physical, but rather indicate the degrees of freedom on the choice of labels (here, a physically symmetric family is actually more restricted, eg. if the blocks had reflection symmetry, a non-reflecticve relabeling of the basis states destroys the symmetry built into the system). Then the equations are generated, and by default, undergo monomial linear reduction.
+    \item Finding trivial solutions costs a large amount of time, therefore they need to be filtered out a priori, by hand. These include three subcategories:
+    \begin{enumerate}
+        \item Blocks that are \textbf{diagonal} (\textbf{inactive}) provide $(d-1)d/2$ linear equations that can be used as constraints (saturation) for the \textit{variety}. This way, no block that has $h^{ab}_{i<j}\not \equiv 0$ (non-diagonal/\textbf{active}) is accidentally included at a special point where it would reduce to being diagonal. This is useful for finishing off easy components quickly, while also separating the largest case (when the pattern contains every active candidate block). (Also, an inactive block is one which cannot flip a basis state of the 3-site Hilbert space, therefore it is also physically motivated to separate them from state-flipping ones.)
+        \item Blocks that have at most \textbf{two-local} terms in their densities are not interesting solutions of 3-site models.
+        \item Blocks that have trivial $\Q_5=\equiv 0$ components do not contribute anything to integrability.
+    \end{enumerate}
+    Offdiagonal entries (which are \textit{linear forms}) therefore have an important role in determining trivial points. A set of forms for a given block is linear reduced before being handed over for ideal saturation.
+\end{itemize}
+A given ansatz has a number $s\in \{1,...,d^2\}$ possible active blocks. The disjoint union of solutions sets with different number of active blocks span the whole solution set, therefore they can be checked one by one. One arrangement of active blocks is called a \textit{pattern}, the number of patterns is obtained with the combination $\binom{d^2}{2}-1$ (-1 for the trivial empty set).
+\begin{itemize}
+    \item For a given ansatz, the active blocks are collected (symmetries for a given system determine this set). 
+    \item The $\binom{\mathrm{|active|}^2}{2}-1$ combinations are the candidates for being an active pattern. However, if the system is symmetric to relabelings or reflections, then a family of patterns would correspond to the same solution - these familes are called \textit{orbits}, and only one representative needs to be taken into account in one orbit, per pattern. Also, the patterns need to be checked for consistency: if two forms provide the same equations (therefore spanning the same solution set), then they need to be simultaneously active or inactive.
+    \item Everything above provides constraining linear equations, that will quickly eliminate variables from the Gröbner solver. A \textit{stratum} is the set of solutions for the system of equations constrained by some activity pattern $S$:
+    \begin{equation}
+        V_S:=\{x\in V_I:F^{ab}_{ij}(x)\equiv 0\ \forall i<j \Leftrightarrow k\not\in S \},
+    \end{equation}
+    where $F^{ab}_{ij}(x)$ is the linear form of matrix entry $ij$ at block $(a,b)$. The disjoint union of these strata provides the complete solution set (the fact that two strata is disjoint can be seen from the fact that no two activity patterns can be the same).
+    \item Before obtaining the equations of a unique stratum, we further partition the system. Exploiting the linear forms' homogeneity, it is obvious that if $x$ is a solution of $\{F_{ij}^{ab}=0\}_{i<j}$, then also is $\lambda x$. This freedom can be used to collapse the ray of the solutions to a single value of $\lambda$ by setting one parameter to a unique number, eg. 1. For this, one of the active blocks will be used, in which the first nonzero form will be set to 1: $F_c(x)=1$ (the unique index $c$, encoding the $ij$ matrix index, real or imaginary, corresponds to a \textbf{chart}), where if $m<c$, $F_m(x)=0$. This provides additional linear equations, with the crucial property that the disjoint union of the different $c$ labels meets the solution set at exactly one point for a given first block of a unique activity pattern:
+    \begin{gather}
+        U_c:=\{x\in V_S:F_m(x)=0,\ \text{if}\ m<c, F_c(x)=1\}, \\
+        V_S\cap \bigcup_{c\in\{ij\}_{i<j}}U_c=x_0, \text{ with } x_0 \text{ unique.}
+    \end{gather}
+    To sum up, a chart consists of the restrictions imposed by the inactive blocks and all the forms preceding $c$ and $F_c(x)=0$, while the other active blocks will provide the 
+\end{itemize}
+
+\end{document}

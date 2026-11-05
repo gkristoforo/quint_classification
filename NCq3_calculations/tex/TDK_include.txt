@@ -1,0 +1,6 @@
+-proof for the gauge transformed density of a ti operator
+-showing how the q5 density reduces from the article to a single, 4-site quantity
+-explicit form of the dictionary keys (0, 1, ...., ) in linear algebraic framework
+-explanation of why the splitting (a,b,i,j) -> (a,i,b), (a,j,b) is needed, via invoking braket formalism on tensor product spaces
+-demonstrating that there is no need for 5-site q5 charge
+-\tau |c> := |c+1 mod 3> for the Z3 clock symmetry

@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+% \usepackage{parskip}
+\usepackage[magyar]{babel}
+\usepackage[T1]{fontenc}
+
+\geometry{hmargin = 3cm, top = 3cm, bottom = 2.5cm, headsep = 0.9cm}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+\Large{Szomszédvezérelt integrálható spin-1 láncok klasszifikációja}\\
+\hspace{10pt}
+
+Gulyás Kristóf $^\dagger$, fizika BSc 3. év \\
+\normalsize
+Témavezető: Pozsgay Balázs $^\ast$ \\
+\normalsize
+% \large
+
+\hspace{10pt}
+
+\small{$^\dagger$ kristof0905@gmail.com\\}
+\small{$^\ast$ pozsgaybalazs@gmail.com\\}
+\hspace{5pt}
+\end{center}
+
+
+{\large
+\begin{abstract}
+A kvantumosan \textit{integrálható} modellek -- melyek végtelen sok lokális megmaradó mennyiséggel rendelkeznek, és sok esetben egzaktul megoldhatók -- kiemelt szerepet játszanak többek közt a zárt kvantumrendszerek nemegyensúlyi dinamikájának megértésében, numerikus számolások validálásában és kvantumhardverek benchmarkolásában. Az általános konstrukcióban a Yang--Baxter-egyenlet biztosítja a szükséges algebrai struktúrát: az egyenlet egy megoldásából -- az úgynevezett $R$-mátrixból -- eltolásinvariáns láncok Hamilton-sűrűsége származtatható. Fordított irányban egy adott Hamilton-sűrűség integrálhatósága a \textit{Reshetikhin-feltétellel}, azaz egy speciális megmaradó mennyiség létezésével tesztelhető.
+
+Munkám során háromdimenziós (spin-1) lokális Hilbert-terekkel rendelkező, háromhelyes, szomszédvezérelt Hamilton-sűrűségű láncokat vizsgáltam. Ez a szerkezet a kétszeresen vezérelt kvantumkapuk logikáját követi, így az ilyen modellek természetes kapcsolatban állnak a kvantumáramkörökkel és a kvantumos sejtautomatákkal. A vizsgált modellek a közepes hatótávolságú integrálható rendszerek családjába tartoznak, melyek tárgyalására jól kidolgozott keretrendszer létezik, azonban ezt az irodalomban főként qubites rendszerekre alkalmazták. Fizikailag motivált szimmetriák betartását követeltem meg a lánctól, majd a már említett Reshetikhin-feltételt egy homogén, harmadfokú polinomiális egyenletrendszerre vezettem vissza. Ezt egy saját fejlesztésű szoftverrel, Gröbner-bázisokon alapuló egzakt algebrai módszerekkel oldottam meg, a lokális bázistranszformációkkal ekvivalens megoldások kiszűrésével. Az algoritmus rendeltetésszerű működését több tétel bizonyításával is alátámasztottam. Klasszifikációm során egyes szimmetriaosztályokban nemtriviális integrálható modelleket azonosítottam, míg másokban kizártam a létezésüket. Az algebrai megoldást nyújtó algoritmust az irodalomban fellelhető modellek (például a spin-1/2 szomszédvezérelt láncok) reprodukálásával is validáltam.
+    
+\end{abstract}
+}
+
+
+
+
+\end{document}

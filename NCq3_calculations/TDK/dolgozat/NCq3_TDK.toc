@@ -1,0 +1,20 @@
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezetés}{1}{chapter.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Elméleti áttekintés plan}{1}{section.1.1}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Keretrendszer}{2}{chapter.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.1}Yang--Baxter-integrálható szomszéd-kölcsönható modellek}{2}{section.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Motiváció}{2}{subsection.2.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Lax-operátor, R-mátrix, a transzfermátrix}{2}{subsection.2.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.3}Yang--Baxter-egyenlet}{4}{subsection.2.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.4}Lokális, megmaradó töltések konstrukciója}{4}{subsection.2.1.4}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Reshetikhin-feltétel}{6}{section.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.3}Yang--Baxter-integrálható medium range modellek}{7}{section.2.3}%
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Polinomiális egyenletrendszerek robosztus megoldása}{9}{section.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}Ideálok, varietás}{10}{subsection.2.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.2}Gröbner-bázis}{10}{subsection.2.4.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Elméleti eredmények}{12}{chapter.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}A klasszifikáló algoritmus}{13}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}A vizsgált NCq3 modellcsalád}{13}{section.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Az algoritmus célja}{13}{section.4.2}%
+\select@language {magyar} \contentsline {section}{\numberline {4.3}A matematikai struktúra az ansatz alatt}{13}{section.4.3}%
+\select@language {magyar} \contentsline {section}{\numberline {4.4}Viszgált szimmetriacsaládok}{14}{section.4.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Eredmények az egyes szimmetriacsaládokban}{15}{chapter.5}%

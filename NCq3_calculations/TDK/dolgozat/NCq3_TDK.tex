@@ -1,0 +1,390 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\input{preamble}
+
+% ---- CUSTOM COMMANDOK ----
+% kaligrafikus operátorok
+\newcommand{\R}{\mathcal{R}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\Q}{\mathcal{Q}}
+\newcommand{\Shift}{\mathcal{S}}
+\newcommand{\id}{\mathds{1}}
+
+% mátrixok
+\newcommand{\Xmat}{\mathbf{X}}
+
+% egyéb operátorok
+\newcommand{\hab}{h^{ab}}
+\newcommand{\hjtri}{h_{j,j+1,j+2}}
+\newcommand{\htil}{\tilde{h}}
+\newcommand{\Htil}{\tilde{H}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\adbh}{\mathrm{ad}_{B_H}}
+
+% terek, halmazok
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\Qrac}{\mathbb{Q}}
+\newcommand{\Hil}{\mathscr{H}}
+
+% specifikált halmazok
+\newcommand{\Qring}{\mathbb{Q}[x]}
+\newcommand{\fideal}{\langle f_1,\dots,f_m\rangle}
+
+% mathrm dolgok
+\newcommand{\LM}{\mathrm{LM}}
+\newcommand{\NF}{\mathrm{NF}}
+
+% text
+\newcommand{\ahol}{\quad \text{ahol} \quad}
+\newcommand{\kov}{\quad \Rightarrow \quad}
+
+\begin{document}
+\input{fedlap.tex}
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+
+\chapter{Bevezetés}
+Nagyjából 2-3 oldal.
+\begin{itemize}
+    \item Integrálhatóságról általában: miért érdekes, mit nyerünk azzal, hogy foglalkozunk vele, stb.
+    \item Milyen oldalról lehet megközelíteni az integrálhatóságot: lokális megmaradó töltések (statfiz), szórásprobléma, YBE, ebből mindenféle kvantumcsoportok- és algebrák.
+    \item Milyen jellegű láncokat lehet vizsgálni, példák (nn., medium- és long range).
+    \item Az NCq3 modellcsaládról, nagyon röviden: mit általánosít, miért érdekes (2 vs 3 állapot, nemteljes dipoláris kölcsönható tér operátorbázis).
+\end{itemize}
+
+\section{Elméleti áttekintés plan}
+Nagyjából 8-10 oldal (?). Szekciók legyenek a következők:
+\begin{itemize}
+    \item \textbf{Jelölések:} traceless mátrixokkal való számolás miért hasznos, operátorok, bázisvektorok, projektorok, tenzorszorzat jelölése, eltolásoperátor, sűrűségek, $\hbar$, tenzorhálózatok alapjai.
+    \item \textbf{Megmaradó mennyiségek a kvantummechanikában}
+    \item \textbf{Yang--Baxter-integrálhatóság nn. láncokra:} motiváció, majd bottom-up levezetés a lokális, megmaradó töltésekre a transzfermátrixból, a YBE segítségével. Két-, és egyparaméteres $\R$-mátrixok. Reshetikhin-feltétel. Szimmetria $V\otimes V$-vel való szorzásokra nézve.
+    \item \textbf{3-site általánosítás:} ragasztás. $\R$-mátrix faktorizációja Lax-operátorok szorzatára. 3-site Reshetikhin, plusz tagok eltűnnek, ha egyparaméteres az $\R$.
+    \item \textbf{Integrálható kvantumáramkörök:} kapcsolat a Hamilton-operátor és az unitér kapuk közt, sejtautomaták, Hillberry cikk, 2-site példák.
+\end{itemize}
+\newpage
+
+\chapter{Keretrendszer}
+
+\section{Yang--Baxter-integrálható szomszéd-kölcsönható modellek}
+\subsection{Motiváció}
+Az eltolásinvariáns, szomszédos rácsponttal kölcsönható integrálható modellek \textit{Yang--Baxter-típusú} megközelítésében a lokális, megmaradó mennyiségeket konstruktívan állítjuk elő. Az intuitív gondolat a következő: azt várjuk, hogy a Hamilton-operátorban szereplő $j$-edik lokális sűrűség előállítható legyen egy globális, a teljes lánc Hilbert-terén ható $T$ operátoron végzett transzformációval, melynek hatására a rácsponton kívüli Hilbert-tereken csupán triviális hatás marad. Ha a globális operátor olyan lokális, spektrálparamétertől függő operátorok szorzataként áll elő, melyek egy speciális pontban triviálisan hatnak, akkor ennek első rendű deriváltja a speciális pont körül pont a várt lokális, szumma alakú Hamilton-operátort adják. Ezek után definiáljuk a magasabb rendű töltéseket úgy, mint a $T(u)$ globális operátor (mely a fentiek szerint spektrálparamétertől függ) magasabb rendű deriváltjai. Taylor-sorba fejtve $T(u)$-t látszik, hogy a töltések egymással való kommutálása ekvivalens a $[T(u),\ T(v)]=0\ \forall u,v\in\mathbb{C}$ feltétellel. A konstrukció célja, hogy olyan lokális operátorokat találjunk, amelyek szorzataként előállítható a fenti kommutációs tulajdonságú $T(u)$.\\
+
+\subsection{Lax-operátor, R-mátrix, a transzfermátrix}
+A konstrukció építőelemei az ún. \textbf{Lax-operátorok}. Ezek két, azonos dimenziójú Hilbert-tér tenzorszorzatterén hatnak, és egy spektrálparamétertől, kanonikusan $u\in\C$-től függnek. A két tér közül az egyik a $\Hil_j$-edik fizikai tér, a másik perdig a $\Hil_a$ segédtér, vagyis
+\begin{equation}\label{eq: laxdef}
+    \L_{a,j}(u,v)\in\mathrm{Lin}\left(\Hil_a\otimes\Hil_j\right),\quad \dim\Hil_j=\dim\Hil_a\in\mathbb{N}.
+\end{equation}
+A monodrómia mátrixot a következőképp definiáljuk:
+\begin{equation}
+    M(u):=\prod_{j\in\F}\L_{a,j}, 
+\end{equation}
+ahol $\F=\{1,2,\dots,l\}$ véges halmat. Ahhoz, hogy véges számú rácspont esetén eltolásinvarianciát élvezzen a lánc, kényszerfeltételként periodikus határfeltételt kell megkövetelnünk, vagyis $\Hil_{l+1}=\Hil_1$. Bár a végeredményben nem az $M(u)$ fog szerepelni, igen szemléletes, hogy mit jelentene az $[M(u),\ M(v)]=0$ reláció teljesülése (\ref{fig:monodromy_flip} ábra).
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{example-image-a}
+  \caption{KÉP A MONODRÓMIA MÁTRIX KOMMUTÁLÁSÁRÓL.}
+  \label{fig:monodromy_flip}
+\end{figure}
+A két lánc egymáson való áthúzását azonban végrehajthatjuk lokáis lépéseken keresztül is: ha létezik egy, a $\Hil_a\otimes\Hil_b$ szorzattéren ható $\R_{a,b}(u, v)$ R-mátrixnak nevezett operátor, ami kielégíti a 
+\begin{equation}\label{eq:RLL}
+    \R_{b, a}(\mu, \nu)\L_{b, j}(\nu)\L_{a, j}(\mu)=\L_{a, j}(\mu)\L_{b, j}(\nu)\R_{b, a}(\mu, \nu)
+\end{equation}
+\textit{RLL-relációnak} nevezett egyenletet, továbbá létezik az $\R^{-1}_{b,a}$ kétoldali inverze is, akkor az $\R_{b,a}\R^{-1}_{b,a}=\mathds{1}$ szorzatot a lánc egy adott rácspontja után beszúrva az R-mátrix és inverze közt a két teljes lánc megfordítható:\\
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{example-image-a}
+  \caption{KÉP AZ R-MÁTRIXOS MEGFORDÍTÁSRÓL.}
+  \label{fig:rmat_on_monodromy}
+\end{figure}
+
+Végezetül, hogy ténylegesen egy kommutációs relációt kapjunk extra operátorok nélkül, a segédtéren trace-t veszünk, kihasználjuk a $\Tr(AB)=\Tr(BA)$ azonosságot, így az R-mátrixot az inverze mellé tehetjük, amelyek együtt természetesen már identitásként hatnak. Azt látjuk tehát, hogy definiálva a \textbf{transzfermátrixot}, mint
+\begin{gather}\label{eq:tarnsfermat}
+    T(u):=\Tr_a\prod_{j\in\F}\L_{a,j}(u),
+\end{gather}
+bármilyen $u,v\in \C$ esetén teljesülni fog a következő reláció (lásd. \textcolor{red}{függelék}):
+\begin{equation}\label{eq:transfer_comm}
+    [T(u),\ T(v)]=0.
+\end{equation}
+
+\subsection{Yang--Baxter-egyenlet}
+Eddig úgy tűnhet, hogy az R-mátrix bármilyen invertálható, szorzattéren ható operátor lehet, ami teljesíti az RLL-relációt. Vegyünk azonban három Lax-operátort, hassanak mind ugyanazon a $\Hil_j$ fizikai téren, de különbözö $\Hil_1,\ \Hil_2,\ \Hil_3$ segédtereken. A spektrálparaméter-függést egyelőre elnyomjuk. Ahhoz, hogy megkapjuk a $\L_{1,j}\L_{2,j}\L_{3,j}\rightarrow\L_{3,j}\L_{2,j}\L_{1,j}$ átrendezést, látszik, hogy 3 R-mátrixra van szükség\footnote{Az RLL-reláció pont azt állítja, hogy egy cseréhez egy R-mátrix szükséges, és ahhoz, hogy egy három elemű permutációt szomszédok cseréjével megfordítsunk, pont három cserére van szükség.}, azonban kétféleképp is eljárhatunk:
+\begin{align}
+    1.\quad \R_{1,2}\R_{1,3}\R_{2,3}\L_{1,j}\L_{2,j}\L_{3,j}&=\L_{3,j}\L_{2,j}\L_{1,j}\R_{1,2}\R_{1,3}\R_{2,3} \\
+    2.\quad \R_{2,3}\R_{1,3}\R_{1,2}\L_{1,j}\L_{2,j}\L_{3,j}&=\L_{3,j}\L_{2,j}\L_{1,j}\R_{2,3}\R_{1,3}\R_{1,2}.
+\end{align}
+A második egyenletből kifejezzük a $\L_{3,j}\L_{2,j}\L_{1,j}$ szorzatot, visszaírjuk az elsőbe, így a következőt kommutációs relációt kapjuk:
+\begin{equation}
+    [\L_{1,j}\L_{2,j}\L_{3,j},\ \mathcal{Y}]=0, \ahol \mathcal{Y}:=(\R_{2,3}\R_{1,3}\R_{1,2})^{-1}\R_{1,2}\R_{1,3}\R_{2,3}.
+\end{equation}
+Ha a kommutátor nem triviálisan 0, akkor a Lax-operátorok algebrájára nézve ez a konzisztenciafeltétel komoly kényszert ró ki, azonban megkövetelve az $\mathcal{Y}\sim \id$ feltételt, nem vesztünk megoldást. Ez a feltétel az R-mátrixokra az ún. \textbf{Yang--Baxter-egyenlet} (a továbbiakban YBE), expliciten, a spektrálparamétert visszaírva a következő alakot ölti:
+\begin{equation}\label{eq:YBE}
+    \R_{1,2}(u_1,u_2)\R_{1,3}(u_1,u_3)\R_{2,3}(u_2,u_3)=\R_{2,3}(u_2,u_3)\R_{1,3}(u_1,u_3)\R_{1,2}(u_1,u_2).
+\end{equation}
+Fontos megjegyezni, hogy azok az R-mátrixok, melyek kielégítik a YBE-t, az RLL-relációt is kielégítik, ha a következőképp értelmezzük a Lax-operátorokat:
+\begin{equation}\label{eq:laxfromR}
+    \L_{a,j}(u):=\R_{a,j}(u,0).
+\end{equation}
+Ettől a ponttól kezdve a Lax-operátort R-mátrix alakban használjuk.
+
+
+\subsection{Lokális, megmaradó töltések konstrukciója}
+Ahhoz, hogy ténylegesen lokális operátorok legyenek maga a Hamilton-operátor, valamint a megmaradó töltések is, az R-mátrixra a következő \textit{regularitás feltételt} tesszük a 0 pont körül\footnote{Bármilyen $\xi_0$ pontot választhattunk volna speciális pontként, azonban ez csupán a koordinátatengelyek eltolását jelentené, a deriváltként kapott operátorok struktúráját egyáltalán nem befolyásolja.}:
+\begin{equation}
+    \L_{a,j}(0)=\R_{a,j}(0,0)=\P_{a,j}, \quad \text{ahol}\quad \P\ |\psi\rangle\otimes|\phi\rangle=|\phi\rangle\otimes|\psi\rangle.
+\end{equation}
+Ha teljesül a fenti regularitás, akkor megmutatható, hogy
+\begin{equation}\label{eq:regularity}
+    \R_{1,2}(u,v)\R_{2,1}(v,u)\sim\id,
+\end{equation}
+vagy $\R(u,v)=\R(u-v)$ differenciaalakú R-mátrix esetén
+\begin{equation}\label{eq:regularity_diff}
+    \R_{1,2}(u)\R_{2,1}(-u)\sim\id.
+\end{equation}
+Ezt a hasznos eredményt a későbbiekben alkalmazzuk majd.\\
+
+A töltések a következőképp definiáljuk:
+\begin{equation}\label{eq:charges}
+    \Q_n:=\partial^n_u\ln T(u)\big|_{u=0}.
+\end{equation}
+Meggyőződhetünk arról, hogy a töltések kommutálnak egymás közt, ehhez kihasználjuk az \eqref{eq:transfer_comm}-t, valamint azt az elemi tényt, hogy ha két operátor kommutál egymással, akkor azok bármilyen operátorfüggvénye is kommutálni fog:
+\begin{gather}
+    [\ln T(u),\ \ln T(v)] = \left[\sum_{k=0}^\infty\frac{u^k}{k!}\partial_u^k\ln T(0),\ \sum_{l=0}^\infty\frac{v^l}{l!}\partial_v^l\ln T(0)\right]=\sum_{k,l=0}^\infty \frac{u^kv^l}{k!l!}\left[\Q_k, \Q_l\right]=0, \\
+    \kov\left[\Q_k, \Q_l\right]=0 \quad \forall k,l\in \N.
+\end{gather}
+Egy adott, YBE-t kielégítő R-mátrixhoz rendszerint a $\Q_2$ töltést választjuk a $H$ Hamilton-operátornak. Ez garantálja is a többi töltés megmaradását is, hiszen a Heisenberg-képben egy időtől expliciten nem függő operátor időbeli deriváltja csak a Hamilton-operátorral vett kommutátortól függ, melynek kinullázódását a konstrukció garantálja. $H$ alakkjának meghatározásához vegyük a transzfermátrix első logaritmikus deriváltját a 0 pont körül:
+\begin{gather}
+    H:=\Q_2=\partial_u\ln T(u) \big|_{u=0}=T^{-1}(0)\partial_uT(0).
+\end{gather}
+Az inverz könnyen számítható a speciális 0 pontban:
+\begin{equation}\label{eq:T_inverz}
+    T^{-1}(0)=\Tr_a\prod_{j=1}^l\R_{a,j}(0,0)=\Tr_a\prod_{j=1}^l\P_{a,j}=\Tr_a\left(\P_{a,1}\prod_{j=1}^{l-1}\P_{j,j+1}\right)=\prod_{j=1}^{l-1}\P_{j,j+1}=:\mathcal{S},
+\end{equation}
+vagyis pont a teljes láncon való eltolást kaptuk meg. A transzfermátrix deriváltja pedig a következőképp adódik:
+\begin{align}
+    \partial_u T(0)&=\sum_{j=1}^l\Tr_a\left[\left(\prod_{i=1}^{j-1}\P_{a,i}\right)\partial_u\R_{a,j}(u,0)\big|_{u=0}\left(\prod_{i=j+1}^{l}\P_{a,i}\right)\right]=\dots \\
+    &=\mathcal{S}^{-1}\sum_{j=1}^l\P_{j,j+1}\partial_u\R_{j,j+1}(u,0)\big|_{u=0}.
+\end{align}
+Tehát a Hamilton-operátor alakja a következő:
+\begin{gather}\label{eq:H_dens}
+    H=\sum_{j=1}^lh_{j,j+1}=\sum_{j=1}^l\P_{j,j+1}\partial_u\R_{j,j+1}(u,0)\big|_{u=0},\ahol \\
+    h_{j,j+1}:=\P_{j,j+1}\partial_u\R_{j,j+1}(u,0)\big|_{u=0}
+\end{gather}
+Összefoglalván, ha találunk egy nemtriviális R-mátrixot, amely kielégíti a Yang--Baxter-egyenletet, az a fenti formula alapján egy szomszédos rácspontokkal kölcsönható, integrálható láncot generál.
+
+\section{Reshetikhin-feltétel}
+Az előző fejezetben láttuk, hogy a Yang--Baxter-struktúrát teljesítő R-mátrixok garantálják a töltések egymás közt kommutálását, valamint a Hamilton-operátor alakját is megadják, azonban nem világos, hogy egy adott Hamilton-operátorhoz létezik-e a fenti integrálható struktúra.\\
+Vegyünk egy $h_{j,j+1}$ sűrűséggel rendelkező Hamilton-operátort, s definiáljuk a hozzá tartozó \textit{boost-operátort} a következőképp:
+\begin{equation}\label{eq:boost}
+    B_H:=\sum_{j\in\Z}jh_{j,j+1}.
+\end{equation}
+Azonosítsuk most $\Q_2$-t, mint $\Q_2:=H$, majd definiáljuk rekurzívan az $n+1$-edik töltést (használva az $\mathrm{ad}_{B_H}(A):=[B_H,\ A]$ jelölést):
+\begin{equation}
+    \Q_{n+1}:=\adbh(Q_n)=\adbh^{n-1}(\Q_2).
+\end{equation}
+Hosszú ideje fennált az ún. Reshetikhin-sejtés, miszerint a $[\Q_2,\ \Q_3]=0$ \textbf{Reshetikhin-feltétel} garantálja bármely két töltés egymással való kommutálását. Egy friss cikkben ([Hokkyo cikk]) a szerzőnek sikerült pozitívan feloldania ezt a sejtés, vagyis érvényes a következő tétel:
+\begin{tetel}[Reshetikhin-feltétel]\label{the:Reshetikhin}
+    Ha egy adott eltolásinvariáns $H=\sum_j h_{j,j+1}$ Hamilton-operátorhoz tartozó kanonikus $B_H:=\sum_j jh_{j,j+1}$ operátor által generált $\Q_3=\adbh(H)$ töltés megmaradó mennyiség, akkor $\forall n\ge 2$ esetén $\Q_n:=\adbh^{n-2}(H)$ is egy eltolásinvariáns, megmaradó mennyisége $H$-nak, továbbá a $\{\Q_n\}_{n=2}^\infty$ halmaz elemei páronként kommutálnak egymással.
+\end{tetel}
+Bár a Yang--Baxter-struktúra garantálja a megmaradó töltések kommutáló családját, az állítás fordítottja egyáltalán nem triviális, vagyis végtelen sok, egymással kommutáló megmaradó mennyiségből nem biztos, hogy konstruálható egy YBE-t kielégítő R-mátrix, továbbá az sem egyértelmű, hogy a kétféle módon megkapható $\Q_n$ töltések valóban ugyanazok-e. Egy még frissebb cikk szerint azonban a következő tétel is fennáll\footnote{Ez a kapcsolat a megmaradó töltések létezése és egy mögöttes, integrálhatóságot garantáló struktúra közt a kvantumos megfelelője a klasszikus mechanikából ismert Liouville--Arnold-tételnek, ahol a megmaradó mennyiségek és hatás-szög változók közti absztrakt kapcsolatot mutatták meg a tétel névadói.}:
+\begin{tetel}[Kvantumos Liouville--Arnold-tétel]
+    Ha egy eltolásinvariáns, szomszédokkal kölcsönható, $\dim \Hil\in \N$ véges dimenziós lokális Hilbert-terekkel rendelkező lánc $H=\sum_jh_{j,j+1}$ Hamilton-operátora kielégíti a Reshetikhin-feltételt, akkor $\exists\ \R_{12}(u)$ különbség alakú R-mátrix, amely analitikus $u=0$ körül, kielégíti a Yang--Baxter-egyenletet, és a $T(u)=\Tr_a\prod_j\R_{a,j}(u)$ transzfermátrix logaritmikus deriváltjaiként kapott töltések megegyeznek a $B_H=\sum_jjh_{j,j+1}$ boost operátorral $\Q_n=\ad_{B_H}^{n-2}(H)$ alakban kapott töltésekkel.
+\end{tetel}
+Ezek szerint a Reshetikhin-feltételt nem csak szükséges, hanem elegendő feltételként is használhatjuk integrálható modellek keresésekor, vagyis elegendő a Hamilton-operátor szintjén ansatzokat tennünk.\\
+
+Érdemes kiszámítani $\Q_3$ alakját (a YBE formalizmusból), hogy explicit összefüggést kapjunk a Reshetikhin-feltételre, a Hamilton-operátor sűrűségének szintjén:
+\begin{align}
+    \Q_3&=\partial^2_u\ln T(u)\big|_{u=0}, \quad \textnormal{amiből} \\
+    \Q_3&=\sum_{j=1}^l \left[h_{j,j+1},\ h_{j+1,j+2}\right] + \sum_{j=1}^l\left(\P_{j,j+1}\partial^2_u\R_{j,j+1}(0,0)-h_{j,j+1}^2\right),
+\end{align}
+ahol kihasználtuk, hogy $h_{j,j+1}=\P_{j,j+1}\partial_u\R_{j,j+1}(0,0)$, valamint azt, hogy a transzfermátrix különböző függvényei egymással kommutálnak. Megmutatható, hogy ha az R-mátrix differenciaalakú, akkor $\Q_3$ \textit{2-lokális} tagjai eltűnnek (ez a \eqref{eq:regularity_diff} regularitási feltétel kétszeres deriváltjából származik), vagyis
+\begin{gather}
+    \P_{j,j+1}\partial^2_u\R_{j,j+1}(0)=\left(\P_{j,j+1}\partial_u\R_{j,j+1}(0)\right)^2,\quad \text{ekkor} \\
+    \Q_3=\sum_{j=1}^l \left[h_{j,j+1},\ h_{j+1,j+2}\right].
+\end{gather}
+
+\section{Yang--Baxter-integrálható medium range modellek}
+A fentebb ismertetett konstrukció csak $h_{j,j+1}$ Hamilton-sűrűségű, vagyis szomszéd-kölcsönható modellekre vonatkozott, a következőkben ezt terjesztjük ki 3 rácsponton ható, $h_{j,j+1,j+2}$ Hamilton-sűrűséggel karakterizálható modellekre. Kihasználjuk, hogy a fenti konstrukció a $j$-edik rácspont lokális Hilbert-terének $d:=\dim \Hil_j$ dimenziójától nem függött. Vegyünk tehát egy $L:=2l, l\in\N$ hosszúságú, 3 rácsponton kölcsönható
+\begin{equation}
+    H=\sum_{j=1}^{2l}h_{j,j+1,j+2}
+\end{equation}
+Hamilton-operátort, majd értelmezzük a $\Htil$ operátort a következőképp:
+\begin{equation}
+    \Htil:=\sum_{j=1}^l\htil_{j,j+1}, \ahol \htil_{j,j+1}:=h_{2j,2j+1,2j+2}+h_{2j+1,2j+2,2j+3}.
+\end{equation}
+Ezzel az értelmezéssel nyilván $H=\Htil$ teljesül. Ha újraparticionáljuk az eredeti $\Hil=\Hil_\mathrm{lok}^{\otimes L}$ Hilbert-teret, mint $\Hil=(\Hil_\mathrm{lok}\otimes\Hil_\mathrm{lok})^{\otimes l}$, akkor látszik, hogy $\Htil$ már egy szomszéd-kölcsönható operátor, lokálisan $\Hil_\mathrm{lok}':=\Hil_\mathrm{lok}\otimes\Hil_\mathrm{lok}$ alakú, $d^2$ dimenziójú Hilbert-terekkel. A konstrukciót a \ref{fig:glued_chain} ábra szemlélteti.\\
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{example-image-a}
+  \caption{KÉP A RAGASZTOTT LÁNCRŐL ÉS A HAMILTON-TAGOKRÓL.}
+  \label{fig:glued_chain}
+\end{figure}
+
+Alkalmazzuk a szomszéd-kölcsönható modelleknél látottakat a ragasztott láncra. Mint láttuk, léteznie kell egy $\R_{A, J}(u,v)$ R-mátrixnak amely kielégíti a YBE-t, a $\Hil_A$ segédtér izomorf a $\Hil_{J}$ fizikai térrel. Legyen tehát $\Hil_J:=\Hil_{j}\otimes \Hil_{j+1}$, valamint $\Hil_A:=\Hil_a\otimes\Hil_b$, ahol $\Hil_{a}=\Hil_b\cong \Hil_j$. A ragasztott lánc transzfermátrixának alakja a következő:
+\begin{equation}\label{eq:trans_glued}
+    \tilde{T}(u)=\Tr_A\prod_{j=1}^{2l}\R_{A,(2j,2j+1)}(u,0).
+\end{equation}
+Már csak azt kell biztosítani, hogy az így kapott transzfermátrix az eredetihez hasonlóan eltolásinvarianciát élvez (ez a trace ciklikus tulajdonságának köszönhető), vagyis
+\begin{equation}
+    T(u)=\Shift^{-1}T(u)\Shift,
+\end{equation}
+azonban a ragasztott láncra a konstrukció csak két rácsponttal való eltolásinvarianciát garantál:
+\begin{equation}
+    \tilde{T}(u)=\Shift^{-2}\tilde{T}(u)\Shift^2.
+\end{equation}
+Ahhoz, hogy ténylegesen visszakapjuk a $\tilde{T}(u)=T(u)$ transzfermátrixot, garantálnunk kell az 1 rácspontos invarianciát is. Észrevehetjük, hogy valójában kétféle ragasztási procedúra közül is választhatunk, mikor felírjuk $\Htil$-t:
+\begin{equation}
+    \Hil_J^{(1)}=\Hil_{2j}\otimes \Hil_{2j+1} \quad \text{vagy}\quad \Hil_J^{(1)}=\Hil_{2j+1}\otimes \Hil_{2j}.
+\end{equation}
+Ahhoz, hogy egy $\Shift$-el való transzformációra nézve is invariáns legyen a lánc, a két ragasztási procedúra ugyanarra az eredményre kell vezessen:
+\begin{equation}
+    \Tr_A\prod_{j=1}^{2l}\R_{A,(2j,2j+1)}(u,0)\stackrel{!}{=}\Tr_A\prod_{j=1}^{2l}\R_{A,(2j+1,2j+2)}(u,0).
+\end{equation}
+Egyértelmű, hogy ha az R-mátixot szorzatalakra lehetne hozni, mint
+\begin{equation}
+    \R_{A,(2j,2j+1)}(u,0)=\L_{A,2j}(u)\L_{A,2j+1}(u),
+\end{equation}
+akkor fennállna az egyenlőség, azonban ennek fordítottja egy nagyon erős állítás\footnote{Ha nem lenne igaz, akkor a következő megmaradó töltés, $\Q_5$ kifejezésében megjelenne egy 4-lokális tag is, amelynek még differenciaalakú R-mátrix esetén is lenne járuléka, így enélkül fals negatív eredményeket kapnánk, továbbá az ansatzok nem is "látnának" bizonyos modelleket.}. A már említett [Pozsgay cikk] cikkben a szerzők a következő sejtést fogalmazták meg:
+\begin{sejtes}\label{conj:R_mat_sep}
+    Legyen adott $\R_{A,(j,j+1)}(u,v)$ R-mátrix, mely kielégíti a YBE-t. Konstruáljuk a $T(u)=\Tr_A\prod_{j=1}^{2l}\R_{A,(2j,2j+1)}(u,0)$ alakú transzfermátrixot a $2l$ hosszú ($l\in\N$) periodikus láncon ($\Hil_{2l+1}=\Hil_1$), mely így két rácspontos eltolásokra nézve invariáns, $\Shift^{-2}T(u)\Shift^{2}=T(u)$. Ha azonban az $\Shift^{-1}T(u)\Shift^{1}=T(u)$ egy rácspontos eltolásinvariancia is teljesül, akkor az R-mátrix a $v=0$ pontban szorzatalakú,
+    \begin{equation}
+        \R_{A,(j,j+1)}(u,0)=\L_{A,j}(u)\L_{A,j+1}(u),
+    \end{equation}
+    valamint a fenti kifejezésben szereplő $\L_{A,j}(u)$ Lax-operátor az őt generáló R-mátrixszal kielégíti az RLL-relációt.
+\end{sejtes}
+A dolgozat egyik fő eredménye a fenti sejtés bizonyítása, melyet a későbbiekben prezentálok. Összefoglalva, sikerült ismét egy Lax-operátorok szorzataként előállítható transzfermátrixot konstruálnunk, amiből a már ismertetett módon származik a megfelelő Hamilton-operátor sűrűsége:
+\begin{equation}
+    h_{j,j+1,j+2}=\P_{j+1,j}\P_{j+2,j}\partial_u\L_{j,j+1,j+2}(u)\big|_{u=0}.
+\end{equation}
+Ahhoz, hogy ismét egy Hamilton-operátor szintű feltételt kapjunk az integrálhatóságra, a ragasztott lánc boost operátorával megkapható a következő megmaradó töltés, $\Q_5$, mely alakja a következő:
+\begin{equation}\label{eq:q5_dens}
+    \Q_5=\sum_{j=1}^{2l}[\hjtri, h_{j+1,j+2,j+3}+h_{j+2,j+3,j+4}]+\sum_{j=1}^{2l}\left(\P_{j+1,j}\P_{j+2,j}\partial_u^2\L_{j,j+1,j+2}(u)\big|_{u=0}-\hjtri^2\right).
+\end{equation}
+Természetesen itt is igaz lesz, hogy differenciaalakú R-mátrix esetén elhagyható a 3-lokális tag. Végezetül érvényesítjük a \ref{the:Reshetikhin} tételt, hogy szükséges és elegendő feltételt kapjunk a lánc megmaradó töltéshierarchiájának létezésére:
+\begin{equation}\label{eq:HQ5_comm}
+    [H,\Q_5]=0 \quad \Leftrightarrow \exists\Q_{2k+1}\ \forall k\in\N: [H,\ \Q_{2k+1}]=0.
+\end{equation}
+A dolgozat klasszifikációs sémája ezen az alapösszefüggésen nyugszik.
+
+\section{Polinomiális egyenletrendszerek robosztus megoldása}
+Az előző fejezet végén megkapott \eqref{eq:HQ5_comm} egyenlet kimondja, hogy a kommutátorként megkapott, a teljes lánc $\Hil^{\otimes L}$ Hilbert-terén ható eltolásinvariáns (TI) operátornak identikusan el kell tűnnie. Jelölje az $X\in\mathrm{Lin}(\Hil^{\otimes n})$ TI operátor $k$-lokális sűrűségét $D(X)$, ekkor $X$ alakja a következő:
+\begin{equation}
+    \Hil^{\otimes n}\ni X=\sum_j \T^j D(X), \ahol  \T^{j}:\Hil_k \rightarrow \Hil_{k+1}, \quad \T^j X_k=X_{k+j}.
+\end{equation}
+A TI operátor identikus 0 volta ekvivalens azzal, hogy a sűrűsége 0 (\footnote{Ez alól kivételet képeznek például a teleszkopikus sűrűségek, azonban az algoritmus részletes bemutatásakor egy konstruktív tétellel igazolom, hogy ezek a 0 összjárulékú sűrűségek kitranszformálhatóak bármilyen eltolásinvariáns operátor sűrűségéből.}). Mivel a sűrűség véges dimenziójú lokális terek véges tenzorszorzatán hat, ábrázolható mátrixként, melynek (3 hatótávolságú Hamilton-sűrűség esetén) minden komponense a $H$ és $\Q_5$ ábrázolt mátrixok komponenseinek valamilyen polinomja lesz, az identikus kinullázódás pedig az így kapott teljes polinomiális egyenletrendszer megoldásaiban teljesül. A teljes megoldáshalmaz egzakt megtalálását a következőkben bemutatott keretrendszer biztosítja.\\
+
+Legyen a $[H,\Q_5]$ TI kommutátor sűrűsége az $X$, ekkor az ábrázolt $\mathbf{X}$ mátrix minden $[\mathbf{X}]_{\alpha\beta}$ egy $f_k(x)$ polinom, ahol az $x=(x_1...x_n)$ vektor tartalmazza a $H,\Q_5$ operátorok minden szabad paraméterét. Érdemes megjegyezni, hogy a
+\begin{equation}\label{eq:htil}
+    \htil_{j,j+1,j+2}:=\P_{j+1,j}\P_{j+2,j}\partial_u^2\L_{j,j+1,j+2}(u)\big|_{u=0}-\hjtri^2
+\end{equation}
+3-lokális tag $\Q_5$ sűrűségéből eltűnik differenciaalakú R-mátrix esetén, ekkor pedig az összes $x_i$ paraméter a Hamilton-operátor sűrűségéből kinyerhető, ugyanis $\Q_5$ előállítható a $\hjtri$ sűrűségek kommutátoraként, nem kerülnek be új paraméterek.\\
+Összefoglalva, a klasszifikációs probléma a következő egyenletrendszer megoldását jelenti, használva az $[\Xmat]_{\alpha\beta}:=\langle\alpha|D([H,\Q_5])|\beta\rangle$ reprezentációs jelölést ($\{|\alpha\rangle\}$ teljes ortonormált bázis a sűrűség Hilbert-terén):
+\begin{equation}
+    f_1(x)=\dots=f_m(x)=0, \quad \text{ahol, } k:=(\alpha\beta) \textnormal{ jelöléssel}\quad  f_{(\alpha\beta)}(x)=[\Xmat]_{\alpha\beta}.
+\end{equation}
+\subsection{Ideálok, varietás}
+A fenti polinomiális egyenletrenszer, hasonlóan a vektorterek véges elemszámú részhalmazaihoz, kifeszítenek egy nagyobb teret, ahol bármely elem előállítható a generátorok lineárkombinációjaként. Dolgozzunk a $\Qrac[x_1\dots x_n]$ gyűrű felett, használjuk az egyszerűsített $f_i:=f_i(x)$ jelölést, és definiáljuk a következő halmazt:
+\begin{definicio}[Ideál]
+    Az $f_1,\dots f_m\in\Qring$ polinomok által \textit{generált ideál}
+    \begin{equation}\label{eq:ideal_def}
+        I=\langle f_1,\dots,f_m\rangle=\left\{\sum_{i=1}^m a_if_i:a_i\in\Qring\right\}.
+    \end{equation}
+    Az ideál (komplex) \textit{varietása} $\mathcal{V}(I)=\left\{z\in\C^n:f(z)=0\ \forall f\in I\right\}$, a varietás valós pontjait pedig a $\V_\Real(I)=\V(I)\cap\Real^n$ halmaz tartalmazza.
+\end{definicio}
+Tehát $\fideal$ tartalmazza az összes $g\in\Qring$ polinomot, amelyek megkaphatóak, mint lineárkombinációk $\Qring$-beli elemekkel, vagyis itt az együtthatók is polinomok. Az eredeti probléma pedig újrafogalmazható, mint a generált ideál varietásának megtalálása.\\
+A következő tételek az ideálok nyelvére fordítják az alábbi, megoldásokkal kapcsolatos kérdések eldöntését.
+\begin{tetel}[Hilbert-féle nullhelytétel]\label{the:nullstellensatz}
+    Legyen $I\subseteq \Qring$ ideál.
+    \begin{enumerate}
+        \item (gyenge alak) $\V(I)=\emptyset \iff 1\in I$;
+        \item (erős alak) a $g\in\Qring$ pontosan akkor 0 $\V(I)$-n, ha $g\in\sqrt{I}=\left\{a\in \Qring\Big|\ \exists k\in\N^+:a^k\in I\right\}$.
+    \end{enumerate}
+\end{tetel}
+Felmerül majd a későbbiekben az a kérdés, hogy hogyan vizsgálhatjuk a megoldáshalmaz egy olyan tartományát, ahol tudjuk, hogy a $g_1,\dots,g_l$ polinomok nem 0 értékűek. Ehhez szükség lesz a következő definícióra:
+\begin{definicio}[Szaturáció]\label{def:saturation}
+    Az $I$ ideál $J$ ideál általi \textit{szaturációja} alatt a 
+    \begin{equation}
+        I:J^{\infty}=\left\{a\in\Qring: \exists N\in \N^+, aJ^N\subseteq I\right\}.
+    \end{equation}
+    halmazt értjük.
+\end{definicio}
+A szaturáció használatát motiválja a tétel, mely kimondja, hogy $\V(I:J^\infty)$ tulajdonképpen a $\V(I)\setminus\V(J)$ szűrt varietással egyenlő. \\
+Bár a fenti tételek ténylegesen eszközt nyújtanak hasznos eldöntendő kérdések megválaszolására, az $\fideal$ ideál generátoraira nézve a fentiek még nem dönthetőek el. A probléma algoritmikus kezelhetőségéhez szükségünk lesz az ideál egy bizonyos bázisára, amely már kellően kezelhetővé teszi az ideál alatt fekvő struktúrát.
+\subsection{Gröbner-bázis}
+Az $m_k=\prod_{i=1}^n x_i^{k_i},\ k=(k_1\dots k_n)\in \N^n$ szorzatot \textit{monomiálnak} nevezzük, mely a gyűrű változóinak tetszőleges kitevőkkel vett szorzata. Adott gyűrű monomiálja és a $k\in\N^n$ listák közt egyértelmű a megfeleltetés. Legyen adott egy tetszőleges \textit{rendezés} a monomiálok közt, így bármely nemnulla $f$ polinomnak lesz vezető monomiálja, $\LM(f)$. Az ideál tetszőleges generátorhalmazával a gondot a polinomosztás rosszul definiáltsága okozza, melynek hiányában nem tudjuk ellenőrizni, hogy adott polinom az ideál tagja-e. Ezt a problémát kerüli meg a következő definíció.
+\begin{definicio}[Gröbner-bázis]
+    A $G=\left\{g_1\dots g_s\right\}\subseteq I$ az $I$ ideál \textit{Gröbner-bázisa}, ha $G$ vezető monomiálja $I$ összes elemének vezető monomiálját genrálják:
+    \begin{equation}\label{eq:Gröbner}
+        \langle\LM(g_1)\dots\LM(g_s) \rangle=\langle\LM(f):f\in I, f\neq0 \rangle.
+    \end{equation}
+    A Gröbner-bázis \textit{redukált}, ha minden $\LM(g_j)$ együtthatója 1, valamint $\forall k\neq j$ esetén $\LM(g_k)$ nem osztja $g_j$-t.”
+\end{definicio}
+Ezt követően $f$-et $G$ minden elemével végigosztva egyértelmű maradék, az $\NF(f|G)$ normálalak adódik. Adott $f$ ideálhoz tartozása így a következő kritérium ellenőrzésére redukálódik:
+\begin{equation}\label{eq:ideal_membership}
+    f\in I \iff \NF(f|G) =0.
+\end{equation}
+Kiemelt fontosságú a Gröbner-bázisok következő tulajdonsága: $G$ nem függ attól, hogy milyen test felett van definiálva a gyűrű. Speciálisan, ha az algoritmikusan könnyen kezelhető $\Qring$ gyűrű felett keressük a megoldásokat, a kapott halmaz ugyanaz marad, mintha $\C[x]$ felett dolgoztunk volna.
+
+\chapter{Elméleti eredmények}
+Dolgozatom legfőbb eredménye a \ref{conj:R_mat_sep} sejtés bizonyítása. Szerepeljen 
+
+
+\section{Jelölések}
+
+\chapter{A klasszifikáló algoritmus}
+\section{A vizsgált NCq3 modellcsalád}
+Nagyjából 2-3 oldal.
+\begin{itemize}
+    \item $\Q_5$ redukálódik a diagonális csatolás miatt.
+    \item Szimmetriák, amik őrzik a projektorstruktúrát.
+    \item Dipoláris operátorok nem alkotnak bázist többé (ami problémás pl. a Z3\_RR láncnál).
+    \item Bond-site map (talán később), ábrával.
+\end{itemize}
+
+\section{Az algoritmus célja}
+Az algoritmus:
+\begin{itemize}
+    \item Egzakt, matematikailag precízen alátámasztott.
+    \item Teljes megoldásteret kifeszítő.
+    \item Hatékony.
+    \item Már az egyenletrendszer megoldása előtt a tényleges megoldásokat komplexitás szerint klasszfikiáló.
+    \item Triviális rendszereket kizáró.
+\end{itemize}
+
+\section{A matematikai struktúra az ansatz alatt}
+Nagyjából 8-12 oldal.
+Először ismét jelölések:
+\begin{itemize}
+    \item Traceless bázis.
+    \item Eltolás, ez hogy hat az identitással való szorzásra.
+    \item Projektorok/mátrix cellák indexesen ($E_{ij}:=|i\rangle\langle j|$).
+    \item A $\hab$ minden $E_{ij}$ együtthatója affin forma. Emiatt a lineáris változócsere bijektív két megoldás közt.
+    \item A mátrixelemek $P(x)+iQ(x),\ x\in \mathbb{R}^n$ alakúak, adott elem 0, ha a valós és a képzetes rész külön 0.
+\end{itemize}
+Elemibb eredmények:
+\begin{itemize}
+    \item Az eltolásinvariáns operátorok sűrűsége a sűrűségek overlappoló részének eltoltja.
+    \item $\htil$ legyen anti-hermitikus, hogy elég legyen csak a felső offdiagonális és a diagonális elemeket nézni.
+    \item Stb.
+\end{itemize}
+A konzisztens rendszer főbb tartópillérei:
+\begin{itemize}
+    \item A kanonikus forma létezése (konstruktív algoritmus) és unicitása.
+\end{itemize}
+
+
+\section{Viszgált szimmetriacsaládok}
+
+\chapter{Eredmények az egyes szimmetriacsaládokban}
+
+% \printbibliography
+
+\end{document}

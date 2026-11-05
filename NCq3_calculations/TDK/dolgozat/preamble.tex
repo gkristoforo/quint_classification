@@ -1,0 +1,83 @@
+% --- Language and fonts (pdfLaTeX) ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[magyar]{babel}
+\usepackage{csquotes}
+\usepackage{microtype}
+
+% --- Page layout ---
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\geometry{hmargin = 1.8cm, top = 3cm, bottom = 2.5cm, headsep = 0.9cm}
+\usepackage{setspace}
+% \onehalfspacing
+\setlength{\parindent}{0pt}
+\usepackage{indentfirst}   % Hungarian typography indents the first paragraph too
+
+% --- Mathematics ---
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{icomma}        % decimal comma without extra space in math mode
+\usepackage{braket}        % \bra, \ket, \braket
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+% --- Theorem environments ---
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{tetel}{Tétel}[chapter]
+\newtheorem{lemma}[tetel]{Lemma}
+\newtheorem{sejtes}[tetel]{Sejtés}
+\newtheorem{allitas}[tetel]{Állítás}
+\theoremstyle{definition}
+\newtheorem{definicio}[tetel]{Definíció}
+\newtheorem{pelda}[tetel]{Példa}
+\theoremstyle{remark}
+\newtheorem*{megjegyzes}{Megjegyzés}
+
+% --- Figures, tables, code ---
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single}
+\numberwithin{equation}{section}
+
+% --- Styling ---
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+% --- Bibliography ---
+% \usepackage[backend=biber, style=numeric]{biblatex}
+% \addbibresource{references.bib}
+
+% --- Hyperlinks (load late) ---
+\usepackage[hidelinks]{hyperref}
+
+% --- Operators and shortcuts ---
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ham}{\hat{H}}
+
+% --- Fejléc ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{\nouppercase{\textnormal{#1}}}{}}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{16pt}
+
+% --- Hiperhivatkozások ---
+\hypersetup{
+    colorlinks=true,       % Bekapcsolja a szöveg színezését a dobozok helyett
+    linkcolor=blue,        % Belső linkek (pl. tartalomjegyzék, egyenletek, ábrák számai) színe
+    citecolor=green,       % Irodalomjegyzék hivatkozásainak színe
+    filecolor=magenta,     % Fájl hivatkozások színe
+    urlcolor=cyan          % Külső weboldalak (URL-ek) színe
+}
